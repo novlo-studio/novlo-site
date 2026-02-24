@@ -211,26 +211,50 @@
                 <p class="section-subtitle">Professional AI-generated images for Amazon, Shopify, and marketing</p>
             </div>
             <div class="ai-gallery-preview">
-                <div class="ai-item">
-                    <div class="ai-placeholder" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
-                        <span>Amazon Main</span>
+                <!-- Gallery -->
+                <section class="section gallery-section">
+                    <div class="container">                        
+                        <!-- 썸네일 그리드 -->
+                        <div class="gallery-grid">
+                            <div class="gallery-item" data-index="0" data-position="top">
+                                <img src="/images/ai_model01.png" alt="AI Lifestyle Model">
+                                <div class="gallery-overlay">
+                                    <span class="gallery-tag">AI Model</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-index="2" data-position="center">
+                                <img src="/images/ai_model03.png" alt="AI Lifestyle Model">
+                                <div class="gallery-overlay">
+                                    <span class="gallery-tag">AI Model</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-index="3" data-position="center">
+                                <img src="/images/ai_model04.png" alt="AI Lifestyle Model">
+                                <div class="gallery-overlay">
+                                    <span class="gallery-tag">AI Model</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-index="8" data-position="top">
+                                <img src="/images/product03.png" alt="Instagram Thumbnail">
+                                <div class="gallery-overlay">
+                                    <span class="gallery-tag">Instagram Thumbnail</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-index="13" data-position="center">
+                                <img src="/images/shoppingmall_th04.png" alt="Shopping Mall Thumbnail">
+                                <div class="gallery-overlay">
+                                    <span class="gallery-tag">Shopping Mall Thumbnail</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item" data-index="14" data-position="center">
+                                <img src="/images/shoppingmall_th05.png" alt="Shopping Mall Thumbnail">
+                                <div class="gallery-overlay">
+                                    <span class="gallery-tag">Shopping Mall Thumbnail</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="ai-item">
-                    <div class="ai-placeholder" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);">
-                        <span>Lifestyle</span>
-                    </div>
-                </div>
-                <div class="ai-item">
-                    <div class="ai-placeholder" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);">
-                        <span>Thumbnail</span>
-                    </div>
-                </div>
-                <div class="ai-item">
-                    <div class="ai-placeholder" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);">
-                        <span>Mockup</span>
-                    </div>
-                </div>
+                </section>
             </div>
             <div class="ai-cta">
                 <a href="ai-visuals.html" class="btn btn-secondary">View Gallery</a>
@@ -241,6 +265,24 @@
 
     <!-- CTA Section - Dynamically Loaded -->
     <div data-include="includes/cta-section.html"></div>
+
+    <!-- 라이트박스 (페이지 맨 아래, footer 위) -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-backdrop"></div>
+        <button class="lightbox-close" aria-label="Close">X</button>
+        
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous">←</button>
+        <button class="lightbox-nav lightbox-next" aria-label="Next">→</button>
+        
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+        
+        <div class="lightbox-counter">
+            <span id="lightbox-current">1</span> / <span id="lightbox-total">8</span>
+        </div>
+    </div>
 
     <!-- Footer - Dynamically Loaded -->
     <div data-include="includes/footer.html"></div>

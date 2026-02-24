@@ -42,7 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
         initScrollEffects();
         initFormHandling();
         initHeroTilt();
-    });
+        initLightbox();
+    }, 100);
     
 });
 
@@ -381,6 +382,108 @@ function showToast(message) {
     }, 2000);
 }
 
-// Console greeting
-// console.log('%c NOVLO ', 'background: #5a8cff; color: #111; font-size: 24px; font-weight: bold;');
-// console.log('%c Crafted by TH ', 'color: #5a8cff; font-size: 14px;');
+
+// Lightbox functionality
+function initLightbox() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxBackdrop = document.querySelector('.lightbox-backdrop');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+    const currentSpan = document.getElementById('lightbox-current');
+    const totalSpan = document.getElementById('lightbox-total');
+    
+    if (!lightbox || galleryItems.length === 0) return;
+    
+    let currentIndex = 0;
+    const totalImages = galleryItems.length;
+    
+    // 총 이미지 수 표시
+    if (totalSpan) totalSpan.textContent = totalImages;
+    
+    // 이미지 데이터 수집
+    const images = Array.from(galleryItems).map(item => ({
+        src: item.querySelector('img')?.src || '',
+        alt: item.querySelector('img')?.alt || '',
+        caption: item.querySelector('.gallery-tag')?.textContent || ''
+    }));
+    
+    // 라이트박스 열기
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightbox();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // 스크롤 방지
+    }
+    
+    // 라이트박스 닫기
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // 이미지 업데이트
+    function updateLightbox() {
+        const img = images[currentIndex];
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.caption;
+        if (currentSpan) currentSpan.textContent = currentIndex + 1;
+    }
+    
+    // 이전/다음
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateLightbox();
+    }
+    
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateLightbox();
+    }
+    
+    // 이벤트 리스너
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openLightbox(index));
+    });
+    
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxBackdrop.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', prevImage);
+    lightboxNext.addEventListener('click', nextImage);
+    
+    // 키보드 네비게이션
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+    });
+    
+    // 터치 스와이프 (모바일)
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) nextImage();
+            else prevImage();
+        }
+    }
+}

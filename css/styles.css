@@ -131,10 +131,19 @@ a:hover {
     padding: 0.5rem 1.25rem;
     border-radius: 4px;
     font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .nav-cta:hover {
     background: var(--accent-hover);
+    color: var(--text-primary) !important;
+}
+
+/* Nav CTA - Active State (배경 반전) */
+.nav-menu a.nav-cta.active {
+    background: transparent;
+    color: var(--accent) !important;
+    box-shadow: inset 0 0 0 2px var(--accent);
 }
 
 .nav-toggle {
@@ -850,6 +859,9 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
+} 
+.ai-gallery-preview .gallery-section{
+    padding: 20px 0;
 }
 
 .ai-item {
@@ -1378,56 +1390,65 @@ a:hover {
 }
 
 /* Gallery */
+/* Gallery - Square Thumbnails */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 1.5rem;
 }
 
 .gallery-item {
-    aspect-ratio: 4/3;
-    border-radius: 8px;
+    aspect-ratio: 1/1;  /* 정사각형 */
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
+    background: var(--bg-card);
 }
 
-.gallery-image {
+.gallery-item img {
     width: 100%;
     height: 100%;
-    position: relative;
+    object-fit: cover;
+    object-position: center;  /* 기본 중앙 */
+    transition: transform 0.4s ease;
 }
 
-.gallery-badge {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: var(--accent);
-    color: var(--text-primary);
-    padding: 0.25rem 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: 4px;
-    z-index: 2;
+/* 가로로 긴 사진 - 위쪽 중심 (얼굴/제품) */
+.gallery-item[data-position="top"] img {
+    object-position: center 20%;
 }
 
-.gallery-badge.sample-badge {
-    background: var(--text-muted);
+/* 세로로 긴 사진 - 중앙 */
+.gallery-item[data-position="center"] img {
+    object-position: center;
 }
 
+/* 호버 시 확대 */
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* 오버레이 */
 .gallery-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
     padding: 1.5rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
 }
 
 .gallery-tag {
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 0.95rem;
 }
 
 .gallery-note {
@@ -1436,6 +1457,136 @@ a:hover {
     font-size: 0.875rem;
     font-style: italic;
 }
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 배경 (클릭하면 닫힘) */
+.lightbox-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+/* 닫기 버튼 */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    transition: color 0.3s ease;
+}
+
+.lightbox-close:hover {
+    color: var(--accent);
+}
+
+/* 네비게이션 화살표 */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-nav:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+/* 이미지 컨테이너 */
+.lightbox-content {
+    position: relative;
+    z-index: 10001;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* 캡션 */
+.lightbox-caption {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* 카운터 */
+.lightbox-counter {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    z-index: 10001;
+}
+
+/* Gallery item cursor */
+.gallery-item {
+    cursor: pointer;
+}
+
 
 /* AI Pricing */
 .ai-pricing-card {
@@ -2099,6 +2250,26 @@ blockquote {
     
     .cost-vs {
         transform: rotate(90deg);
+    }
+
+    .lightbox-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 1.25rem;
+    }
+    
+    .lightbox-prev {
+        left: 15px;
+    }
+    
+    .lightbox-next {
+        right: 15px;
+    }
+    
+    .lightbox-close {
+        top: 15px;
+        right: 20px;
+        font-size: 2rem;
     }
 
     .footer-content {
