@@ -1716,8 +1716,27 @@ a:hover {
 
 .cost-vs {
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-muted);
+    font-weight: 800;
+    color: var(--text-primary);
+    
+    /* 배경으로 강조 */
+    background: var(--accent);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    
+    /* 그림자 */
+    box-shadow: 0 4px 15px rgba(90, 140, 255, 0.4);
+    
+    /* 글자 그라데이션 */
+    background: linear-gradient(135deg, #fff 0%, #5a8cff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    /* 또는 외곽선 */
+    text-shadow: 
+        0 0 0 var(--accent),
+        0 0 10px rgba(90, 140, 255, 0.5);
 }
 
 /* Use Cases */
@@ -2046,6 +2065,46 @@ a:hover {
     transform: translateY(-2px);
 }
 
+/* Calendly Button */
+.calendly-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--accent);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.calendly-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(90, 140, 255, 0.3);
+}
+
+.calendly-icon {
+    flex-shrink: 0;
+}
+
+/* 또는 아웃라인 스타일 */
+.calendly-btn.outline {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+}
+
+.calendly-btn.outline:hover {
+    background: var(--accent);
+    color: var(--text-primary);
+}
+
 /* Article Styles */
 .article-hero {
     padding-bottom: 2rem;
@@ -2208,7 +2267,13 @@ blockquote {
         padding-top: 7rem;
     }
     .hero-title-3d {
-        font-size: clamp(3rem, 12vw, 6rem);
+        font-size: clamp(3.5rem, 18vw, 6rem);  /* 더 크게 */
+        min-height: 80px;
+        
+        /* 중앙 정렬 */
+        display: block;
+        text-align: center;
+        margin: 0 auto 80px;
         transform: rotateX(10deg) rotateY(-5deg) rotateZ(-3deg);
     }
     .pricing-content,
@@ -2242,14 +2307,59 @@ blockquote {
         transform: none;
         margin-top: 0;
     }
-
-    .cost-comparison {
-        grid-template-columns: 1fr;
+    .diff-grid {
+        grid-template-columns: 1fr;  /* 2fr → 1fr */
+        max-width: 100%;
         gap: 1.5rem;
     }
     
+    .diff-card {
+        padding: 1.5rem;
+    }
+ .cost-comparison {
+        grid-template-columns: 1fr;  /* 1열 */
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
     .cost-vs {
-        transform: rotate(90deg);
+        position: relative;
+        padding: 1rem 0;
+        font-size: 1.25rem;
+        text-align: center;
+        color: var(--accent);
+        
+    }
+    
+    /* 구분선 추가 */
+    .cost-vs::before,
+    .cost-vs::after {
+        content: '';
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        height: 1px;
+        background: var(--border);
+    }
+    
+    .cost-vs::before {
+        top: 0;
+    }
+    
+    .cost-vs::after {
+        bottom: 0;
+    }
+    
+    .cost-item {
+        padding: 1rem;
+    }
+    
+    .cost-item h4 {
+        font-size: 1.125rem;
+    }
+    
+    .cost-total {
+        font-size: 1.5rem;
     }
 
     .lightbox-nav {

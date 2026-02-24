@@ -90,11 +90,20 @@
                     
                     <div class="info-block calendly-block">
                         <h4>Book a Call</h4>
-                        <!-- Calendly link widget begin -->
+                        <p>Prefer to talk? Schedule a free 15-minute discovery call.</p>
+    
+                        <!-- Calendly 버튼 -->
                         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
                         <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-                        <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-novlo7/30min'});return false;">Schedule time with me</a>
-                        <!-- Calendly link widget end -->
+                        <button class="calendly-btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-novlo7/30min?primary_color=5a8cff'});return false;">
+                            <svg class="calendly-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>Schedule 15-min Call</span>
+                        </button>
                     </div>
                     <!--
                     <div class="info-block">
