@@ -160,72 +160,6 @@ function initHeroTilt() {
     updateTransform();
 }
 
-// // Hero 3D Tilt - Performance Optimized
-// function initHeroTilt() {
-//     const heroTitle = document.querySelector('.hero-title');
-//     const hero = document.querySelector('.hero');
-    
-//     if (!heroTitle || !hero) return;
-    
-//     // 부유 애니메이션 클래스 추가
-//     heroTitle.classList.add('floating');
-    
-//     let rafId = null;
-//     let targetRotateX = 0;
-//     let targetRotateY = 0;
-//     let currentRotateX = 0;
-//     let currentRotateY = 0;
-    
-//     // 부드러운 보간 (lerp)
-//     function lerp(start, end, factor) {
-//         return start + (end - start) * factor;
-//     }
-    
-//     function updateTransform() {
-//         // 부드럽게 따라가기 (0.1 = 느린 따라가기, 0.2 = 빠른 따라가기)
-//         currentRotateX = lerp(currentRotateX, targetRotateX, 0.1);
-//         currentRotateY = lerp(currentRotateY, targetRotateY, 0.1);
-        
-//         // GPU 가속된 transform
-//         heroTitle.style.transform = `
-//             translate3d(0, ${Math.sin(Date.now() / 800) * 10}px, 0)
-//             rotateX(${currentRotateX}deg)
-//             rotateY(${currentRotateY}deg)
-//             scale3d(1, 1, 1)
-//         `;
-        
-//         rafId = requestAnimationFrame(updateTransform);
-//     }
-    
-//     // 마우스 이벤트 (throttle 없이, RAF가 알아서 처리)
-//     hero.addEventListener('mousemove', (e) => {
-//         const rect = hero.getBoundingClientRect();
-//         const centerX = rect.width / 2;
-//         const centerY = rect.height / 2;
-        
-//         // -1 ~ 1 범위
-//         const percentX = (e.clientX - rect.left - centerX) / centerX;
-//         const percentY = (e.clientY - rect.top - centerY) / centerY;
-        
-//         // 목표 각도 (최대 10도)
-//         targetRotateY = percentX * 10;
-//         targetRotateX = -percentY * 10;
-//     });
-    
-//     hero.addEventListener('mouseleave', () => {
-//         targetRotateX = 0;
-//         targetRotateY = 0;
-//     });
-    
-//     // 애니메이션 시작
-//     updateTransform();
-    
-//     // 페이지 언로드시 정리
-//     window.addEventListener('beforeunload', () => {
-//         if (rafId) cancelAnimationFrame(rafId);
-//     });
-// }
-
 // Scroll Effects
 function initScrollEffects() {
     const nav = document.getElementById('nav');
@@ -334,6 +268,96 @@ document.querySelectorAll('.gallery-item').forEach(item => {
         this.style.transform = 'scale(1)';
     });
 });
+
+// Smooth scroll for "View Details" buttons
+function initStyleSmoothScroll() {
+    document.querySelectorAll('.style-card .btn-outline').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                const navHeight = document.getElementById('nav')?.offsetHeight || 70;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Highlight the detail section briefly
+                target.style.transition = 'background-color 0.3s ease';
+                target.style.backgroundColor = 'rgba(90, 140, 255, 0.05)';
+                setTimeout(() => {
+                    target.style.backgroundColor = '';
+                }, 1000);
+            }
+        });
+    });
+}
+
+// Style card hover effects with image parallax
+function initStyleCardEffects() {
+    const cards = document.querySelectorAll('.style-card');
+    
+    cards.forEach(card => {
+        const img = card.querySelector('.style-image img');
+        
+        card.addEventListener('mouseenter', () => {
+            if (img) {
+                img.style.transform = 'scale(1.08)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (img) {
+                img.style.transform = 'scale(1)';
+            }
+        });
+    });
+}
+
+// Intersection Observer for detail sections animation
+function initDetailAnimations() {
+    const details = document.querySelectorAll('.style-detail');
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    details.forEach((detail, index) => {
+        detail.style.opacity = '0';
+        detail.style.transform = 'translateY(30px)';
+        detail.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(detail);
+    });
+}
+
+// Initialize all styles page features
+function initStylesPage() {
+    initStyleSmoothScroll();
+    initStyleCardEffects();
+    initDetailAnimations();
+}
+
+// Run when DOM is ready
+if (document.querySelector('.style-gallery')) {
+    initStylesPage();
+}
+
+
 // Share functions
 function shareTwitter() {
     const url = encodeURIComponent(window.location.href);
