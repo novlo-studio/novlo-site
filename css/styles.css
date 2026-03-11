@@ -185,6 +185,7 @@ a:hover {
     align-items: center;
     padding-top: 13rem;
     position: relative;
+    overflow-x: hidden;
 
       /* Base background */
     background: radial-gradient(
@@ -255,6 +256,9 @@ a:hover {
 .hero-title-3d {
     position: relative;
     display: inline-block;
+    max-width: 100%;
+    overflow: visible;
+
     font-family: var(--font-heading);
     font-size: clamp(5rem, 15vw, 12rem);
     font-weight: 800;
@@ -262,15 +266,11 @@ a:hover {
     letter-spacing: -0.05em;
     margin-bottom: 2rem;
     min-height: 1em;
-    padding-bottom: 0.1em;  /* 약간의 여유 */
-    /* 3D 설정 */
+    padding-bottom: 0.1em; 
+
     transform-style: preserve-3d;
     perspective: 1000px;
-    
-    /* 기본 틸트 */
-    /* transform: rotateX(15deg) rotateY(-10deg) rotateZ(-5deg); */
     transform: rotate(-8deg);
-    /* 부유 애니메이션 */
     animation: float3d 6s ease-in-out infinite;
 }
 /* Additional glow just for the title area */
@@ -288,6 +288,7 @@ a:hover {
   opacity: 0.65;
   z-index: -1;
   animation: titleGlow 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes titleGlow {
