@@ -410,14 +410,14 @@ a:hover {
 .hero-subtitle {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     font-weight: 500;
 }
 
 .hero-text {
     font-size: 1.125rem;
     color: var(--text-muted);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     max-width: 600px;
 }
 
@@ -2303,43 +2303,8 @@ a:hover {
     transform: translateY(-2px);
 }
 
-/* Calendly Button */
-.calendly-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.875rem 1.5rem;
-    background: var(--accent);
-    color: var(--text-primary);
-    border: none;
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 0.5rem;
-}
-
-.calendly-btn:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(90, 140, 255, 0.3);
-}
-
-.calendly-icon {
-    flex-shrink: 0;
-}
-
-/* 또는 아웃라인 스타일 */
-.calendly-btn.outline {
-    background: transparent;
-    border: 2px solid var(--accent);
-    color: var(--accent);
-}
-
-.calendly-btn.outline:hover {
-    background: var(--accent);
+/* Google Calendar Button */
+.btn-googleCal:hover {
     color: var(--text-primary);
 }
 

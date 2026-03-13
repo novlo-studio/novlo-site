@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Visuals — NOVLO</title>
     <meta name="description" content="AI-powered product assets, Amazon listings, Shopify images, and YouTube thumbnails. Starting from CA$200 per set.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    
+    <script>
+        fetch("/includes/head-common.html")
+        .then(res => res.text())
+        .then(data => {
+            document.head.insertAdjacentHTML("beforeend", data);
+        });
+    </script>
 </head>
 <body>
     <!-- Navigation - Dynamically Loaded -->
