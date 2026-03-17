@@ -527,24 +527,28 @@ function initContactForm() {
     if (!form) return;
     
     form.addEventListener('submit', async function(e) {
-        e.preventDefault(); // 기본 제출 막기
+        e.preventDefault();
         
-        // 버튼 로딩 상태
         if (submitBtn) {
             submitBtn.disabled = true;
             if (btnText) btnText.style.display = 'none';
             if (btnLoading) btnLoading.style.display = 'inline';
         }
         
-        // Honeypot 체크 (스팸 방지)
         const honeypot = document.getElementById('company');
         if (honeypot && honeypot.value) {
             console.log('Spam detected');
+
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                if (btnText) btnText.style.display = 'inline';
+                if (btnLoading) btnLoading.style.display = 'none';
+            }
             return;
         }
-        
-        // FormData 준비
+
         const formData = new FormData(form);
+        formData.delete('company');
         
         try {
             const response = await fetch(form.action, {
@@ -556,18 +560,13 @@ function initContactForm() {
             });
             
             if (response.ok) {
-                // 성공! thank-you 페이지로 이동
-                const redirectUrl = form.querySelector('input[name="_redirect"]')?.value 
-                                 || form.querySelector('input[name="_next"]')?.value 
-                                 || '/thank-you.html';
-                window.location.href = redirectUrl;
+                form.reset();
+                window.location.href = '/thank-you.html';
             } else {
-                // 에러 처리
                 const data = await response.json();
                 alert('Oops! Something went wrong. Please try again or email directly at hello@novlo.studio');
                 console.error('Form error:', data);
                 
-                // 버튼 복원
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     if (btnText) btnText.style.display = 'inline';
@@ -578,7 +577,6 @@ function initContactForm() {
             console.error('Submit error:', error);
             alert('Network error. Please check your connection and try again.');
             
-            // 버튼 복원
             if (submitBtn) {
                 submitBtn.disabled = false;
                 if (btnText) btnText.style.display = 'inline';
