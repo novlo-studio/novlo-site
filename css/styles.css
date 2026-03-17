@@ -186,6 +186,7 @@ a:hover {
     padding-top: 13rem;
     position: relative;
     overflow-x: hidden;
+    overflow-y: hidden;
 
       /* Base background */
     background: radial-gradient(
@@ -818,8 +819,32 @@ a:hover {
     font-weight: 600;
     text-transform: uppercase;
     border-radius: 4px;
+    z-index: 2;
 }
-
+/* Popular 뱃지 - 파란색 계열 (기존과 동일) */
+.service-badge:not(.limited) {
+    background: var(--accent);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(90, 140, 255, 0.3);
+}
+/* Limited 뱃지 - 오렌지/코랄 계열 (한정 수량 강조) */
+.service-badge.limited {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+/* 한정 뱃지 펄스 애니메이션 */
+@keyframes pulse-badge {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    50% { 
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+    }
+}
 .service-price {
     display: block;
     font-family: var(--font-heading);
@@ -971,6 +996,54 @@ a:hover {
 }
 
 /* Pricing Page */
+/* ========================================
+   PRICING - Original vs Discounted
+   ======================================== */
+
+.pricing-price-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+}
+
+/* 원래 가격 - 취소선 */
+.pricing-original {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    opacity: 0.6;
+    position: relative;
+}
+
+/* 할인 가격 - 강조 */
+.pricing-price-wrap .pricing-price {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ff6b6b; /* limited 뱃지와 같은 색상 계열 */
+    position: relative;
+}
+
+/* 할인 가격 옆 "할인" 라벨 (선택사항) */
+.pricing-price-wrap .pricing-price::after {
+    content: 'Early Bird';
+    position: absolute;
+    top: -8px;
+    right: -60px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    color: var(--text-primary);
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
 .pricing-section .container {
     display: flex;
     flex-direction: column;
@@ -1001,8 +1074,20 @@ a:hover {
     font-weight: 700;
     text-transform: uppercase;
     border-radius: 4px;
+    z-index: 2;
+}
+/* Popular (Business) */
+.pricing-badge:not(.limited) {
+    background: var(--accent);
+    color: var(--text-primary);
 }
 
+/* Limited (Starter) */
+.pricing-badge.limited {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    color: var(--text-primary);
+    animation: pulse-badge 2s ease-in-out infinite;
+}
 .pricing-header {
     margin-bottom: 2rem;
 }
@@ -1367,8 +1452,6 @@ a:hover {
 
 /* AI Visuals Page */
 .ai-description .container {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
     gap: 4rem;
     align-items: start;
 }
@@ -1391,7 +1474,6 @@ a:hover {
 }
 
 /* Gallery */
-/* Gallery - Square Thumbnails */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1399,7 +1481,7 @@ a:hover {
 }
 
 .gallery-item {
-    aspect-ratio: 1/1;  /* 정사각형 */
+    aspect-ratio: 1/1;  
     border-radius: 12px;
     overflow: hidden;
     position: relative;
@@ -1411,21 +1493,18 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;  /* 기본 중앙 */
+    object-position: center; 
     transition: transform 0.4s ease;
 }
 
-/* 가로로 긴 사진 - 위쪽 중심 (얼굴/제품) */
 .gallery-item[data-position="top"] img {
     object-position: center 20%;
 }
 
-/* 세로로 긴 사진 - 중앙 */
 .gallery-item[data-position="center"] img {
     object-position: center;
 }
 
-/* 호버 시 확대 */
 .gallery-item:hover img {
     transform: scale(1.08);
 }
@@ -2520,6 +2599,28 @@ blockquote {
     .diff-card {
         padding: 1.5rem;
     }
+
+    .pricing-price::after {
+        position: relative;
+        top: -5px;
+        right: auto;
+        margin-left: 0.5rem;
+        vertical-align: super;
+    }
+    
+    .pricing-price-wrap {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .pricing-original {
+        font-size: 1.25rem;
+    }
+    
+    .pricing-price {
+        font-size: 2.5rem;
+    }
+
     .cost-comparison {
         grid-template-columns: 1fr;  /* 1열 */
         gap: 1.5rem;
