@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initFormHandling();
         initHeroTilt();
         initLightbox();
+        setProtectedEmails();
     }, 100);
     
 });
@@ -510,4 +511,27 @@ function initLightbox() {
             else prevImage();
         }
     }
+}
+
+//Bot free Email 
+function setProtectedEmails() {
+  const user = "hello";
+  const domain = "novlo.studio";
+  const email = `${user}@${domain}`;
+
+  const contactEmail = document.getElementById("email-contact");
+  if (contactEmail) {
+    contactEmail.href = `mailto:${email}`;
+    contactEmail.textContent = email;
+  }
+  const contactFormEmail = document.getElementById("email-form-contact");
+  if(contactFormEmail){
+    contactFormEmail.href = `mailto:${email}`;
+    contactFormEmail.textContent = email;
+  }
+  const footerEmail = document.getElementById("email-footer");
+  if (footerEmail) {
+    footerEmail.href = `mailto:${email}`;
+    // footerEmail.textContent = email;
+  }
 }

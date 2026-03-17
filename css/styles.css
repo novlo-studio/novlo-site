@@ -995,6 +995,36 @@ a:hover {
     color: var(--text-muted);
 }
 
+.icon-mail {
+  width: 24px;
+  height: 24px;
+}
+.icon-mail path {
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: transparent;
+  transition: all 0.8s ease;
+}
+/* hover 시 */
+.footer-icon:hover .icon-mail {
+  transform: scale(1.4);
+}
+.footer-icon:hover .icon-mail path {
+  fill: currentColor;
+  stroke: #111111;
+}
+.footer-icon::after {
+  content: "Email";
+  position: absolute;
+  bottom: 130%;
+  font-size: 12px;
+  opacity: 0;
+  transition: 0.5s;
+}
+.footer-icon:hover::after {
+  opacity: 1;
+}
+
 /* Pricing Page */
 /* ========================================
    PRICING - Original vs Discounted
