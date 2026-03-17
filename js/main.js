@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initFormHandling();
         initHeroTilt();
         initLightbox();
+        initContactForm()
         setProtectedEmails();
     }, 100);
     
@@ -513,6 +514,81 @@ function initLightbox() {
     }
 }
 
+//    ========================================
+//    CONTACT FORM - AJAX SUBMIT WITH REDIRECT
+//    ========================================
+
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn?.querySelector('.btn-text');
+    const btnLoading = submitBtn?.querySelector('.btn-loading');
+    
+    if (!form) return;
+    
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault(); // 기본 제출 막기
+        
+        // 버튼 로딩 상태
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            if (btnText) btnText.style.display = 'none';
+            if (btnLoading) btnLoading.style.display = 'inline';
+        }
+        
+        // Honeypot 체크 (스팸 방지)
+        const honeypot = document.getElementById('company');
+        if (honeypot && honeypot.value) {
+            console.log('Spam detected');
+            return;
+        }
+        
+        // FormData 준비
+        const formData = new FormData(form);
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // 성공! thank-you 페이지로 이동
+                const redirectUrl = form.querySelector('input[name="_redirect"]')?.value 
+                                 || form.querySelector('input[name="_next"]')?.value 
+                                 || '/thank-you.html';
+                window.location.href = redirectUrl;
+            } else {
+                // 에러 처리
+                const data = await response.json();
+                alert('Oops! Something went wrong. Please try again or email directly at hello@novlo.studio');
+                console.error('Form error:', data);
+                
+                // 버튼 복원
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    if (btnText) btnText.style.display = 'inline';
+                    if (btnLoading) btnLoading.style.display = 'none';
+                }
+            }
+        } catch (error) {
+            console.error('Submit error:', error);
+            alert('Network error. Please check your connection and try again.');
+            
+            // 버튼 복원
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                if (btnText) btnText.style.display = 'inline';
+                if (btnLoading) btnLoading.style.display = 'none';
+            }
+        }
+    });
+}
+
+
 //Bot free Email 
 function setProtectedEmails() {
   const user = "hello";
@@ -528,6 +604,11 @@ function setProtectedEmails() {
   if(contactFormEmail){
     contactFormEmail.href = `mailto:${email}`;
     contactFormEmail.textContent = email;
+  }
+  const urgentEmail = document.getElementById("urgent-email");
+  if(urgentEmail){
+    urgentEmail.href = `mailto:${email}`;
+    urgentEmail.textContent = email;
   }
   const footerEmail = document.getElementById("email-footer");
   if (footerEmail) {

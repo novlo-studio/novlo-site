@@ -49,6 +49,10 @@
                 <!-- Form -->
                 <div class="contact-form-wrapper">
                     <form class="contact-form" id="contactForm" action="https://formspree.io/f/xkozkkdj" method="POST">
+                        <!-- Redirect URL -->
+                        <input type="hidden" name="_next" value="/thank-you.html">
+                        <input type="hidden" name="_redirect" value="/thank-you.html">
+
                         <!-- Honeypot spam protection -->
                         <div class="hp-field"
                         aria-hidden="true"
@@ -60,7 +64,7 @@
                             tabindex="-1"
                             autocomplete="off">
                         </div>
-                        <input type="hidden" name="_subject" value="New NOVLO inquiry">
+                        <input type="hidden" name="_subject" value="New NOVLO project inquiry">
                         <div class="form-group">
                             <label for="name">Name *</label>
                             <input type="text" id="name" name="name" required autocomplete="name"> 
@@ -108,7 +112,10 @@
                             <textarea id="message" name="message" rows="5" placeholder="What are you looking to build? Share your goals, timeline, and any key details?" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-large" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">Sending...</span>
+                        </button>
                         
                         <p class="form-note">I'll respond within 24 hours. For urgent requests, email directly at <a href="#" id="email-form-contact"></a></p>
                     </form>
