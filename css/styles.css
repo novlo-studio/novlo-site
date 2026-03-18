@@ -1721,7 +1721,6 @@ a:hover {
 /* Timeline */
 .seo-timeline {
     padding: 6rem 0;
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(90, 140, 255, 0.05) 100%);
 }
 
 .timeline-box {
@@ -1882,7 +1881,7 @@ a:hover {
 /* Why Ongoing */
 .seo-why-ongoing {
     padding: 6rem 0;
-    background: var(--bg-primary);
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(90, 140, 255, 0.05) 100%);
     text-align: center;
 }
 
