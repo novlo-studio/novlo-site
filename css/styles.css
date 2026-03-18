@@ -2461,8 +2461,9 @@ a:hover {
     left: 0;
     color: var(--accent);
 }
-.ai-pricing-card .btn {
+.ai-pricing-card .ai-pricing-btn {
     text-align: center;
+    margin: 40px 0 0;
 }
 
 /* Cost Comparison */
