@@ -1521,63 +1521,75 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
 }
+.seo-btn {
+    margin-top: 40px;
+}
 
 /* Problem */
 .seo-problem {
-    padding: 6rem 0;
-    background: var(--bg-primary);
+    padding: 8rem 0;  
+    background: var(--bg-secondary);
 }
 
 .problem-content {
-    max-width: 700px;
+    max-width: 720px;
     margin: 0 auto;
     text-align: center;
 }
 
 .problem-content h2 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    margin-bottom: 2rem;
+    font-size: clamp(2rem, 5vw, 3rem); 
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 3rem; 
     color: var(--text-primary);
 }
 
 .problem-list {
     list-style: none;
-    text-align: left;
-    max-width: 400px;
+    text-align: center;  
+    max-width: 480px;
     margin: 0 auto 2rem;
+    padding: 0;
 }
 
 .problem-list li {
-    padding: 0.75rem 0;
-    padding-left: 1.5rem;
-    position: relative;
+    padding: .75rem 0; 
     color: #ff6b6b;
     font-size: 1.125rem;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
 }
 
 .problem-list li::before {
     content: '×';
-    position: absolute;
-    left: 0;
+    position: static; 
     color: #ff6b6b;
     font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1;
 }
 
 .problem-highlight {
     font-size: 1.25rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .problem-highlight strong {
+    /* display: block;   */
     color: var(--accent);
-    font-size: 1.5rem;
+    font-size: 1.75rem; 
+    font-weight: 700;
+    margin-top: 0.5rem;
 }
 
 /* Solution */
 .seo-solution {
     padding: 5rem 0;
-    background: var(--bg-secondary);
+    background: var(--accent-hover);
     text-align: center;
 }
 
@@ -2396,45 +2408,38 @@ a:hover {
     max-width: 800px;
     margin: 0 auto;
 }
-
 .ai-pricing-header {
     text-align: center;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--border);
 }
-
 .ai-pricing-header h3 {
     margin-bottom: 0.5rem;
 }
-
 .ai-pricing-price {
     font-family: var(--font-heading);
     font-size: 3rem;
     font-weight: 800;
     color: var(--text-primary);
 }
-
 .ai-pricing-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     margin-bottom: 2rem;
 }
-
 .ai-pricing-includes h4,
 .ai-pricing-factors h4,
 .ai-pricing-addons h4 {
     margin-bottom: 1rem;
     color: var(--text-primary);
 }
-
 .ai-pricing-includes ul,
 .ai-pricing-factors ul,
 .ai-pricing-addons ul {
     list-style: none;
 }
-
 .ai-pricing-includes li,
 .ai-pricing-factors li,
 .ai-pricing-addons li {
@@ -2442,7 +2447,6 @@ a:hover {
     padding-left: 1.25rem;
     position: relative;
 }
-
 .ai-pricing-includes li::before {
     content: '✓';
     position: absolute;
@@ -2450,7 +2454,6 @@ a:hover {
     color: var(--accent);
     font-weight: 700;
 }
-
 .ai-pricing-factors li::before,
 .ai-pricing-addons li::before {
     content: '•';
@@ -2458,6 +2461,10 @@ a:hover {
     left: 0;
     color: var(--accent);
 }
+.ai-pricing-card .btn {
+    text-align: center;
+}
+
 /* Cost Comparison */
 .cost-comparison {
     display: grid;
