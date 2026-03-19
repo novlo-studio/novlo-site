@@ -223,6 +223,22 @@ function initProcessAccordion() {
     });
 }
 
+// contact.html - Style field toggle
+const projectType = document.getElementById('project-type');
+const styleGroup = document.getElementById('style-group');
+
+if (projectType && styleGroup) {
+    projectType.addEventListener('change', function() {
+        if (this.value === 'web-design') {
+            styleGroup.style.display = 'block';
+            document.getElementById('style').setAttribute('required', 'required');
+        } else {
+            styleGroup.style.display = 'none';
+            document.getElementById('style').removeAttribute('required');
+        }
+    });
+}
+
 // Form Handling
 function initFormHandling() {
     const contactForm = document.getElementById('contactForm');

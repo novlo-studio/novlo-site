@@ -87,7 +87,18 @@
                                 <option value="other">Other / Not Sure</option>
                             </select>
                         </div>
-                        
+                        <!-- only visivle when project type is Web Design -->
+                        <div class="form-group" id="style-group" style="display: none;">
+                            <label for="style">Design Style *</label>
+                            <select id="style" name="style" required>
+                                <option value="">Select a style</option>
+                                <option value="warm-neutral">Warm Neutral Premium</option>
+                                <option value="earthy-natural">Earthy Natural Wellness</option>
+                                <option value="clean-medical">Clean Medical Professional</option>
+                                <option value="modern-local">Modern Local Business</option>
+                                <option value="">Others</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="budget">Budget Range (Optional)</label>
                             <select id="budget" name="budget">
@@ -157,7 +168,27 @@
 
     <!-- Footer - Dynamically Loaded -->
     <div data-include="includes/footer.html"></div>
-
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type');
+        const style = params.get('style');
+        
+        const projectTypeSelect = document.getElementById('project-type');
+        const styleSelect = document.getElementById('style'); 
+        
+        // Project Type auto select
+        if (type && projectTypeSelect) {
+            projectTypeSelect.value = type;
+            projectTypeSelect.dispatchEvent(new Event('change'));
+        }
+        
+        // Style auto select
+        if (style && styleSelect) {
+            styleSelect.value = style;
+        }
+    });
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
