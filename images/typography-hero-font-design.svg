@@ -1,0 +1,67 @@
+<svg viewBox="0 0 960 530" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="blueLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4f8ef7" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#4f8ef7" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#4f8ef7" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeRight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="60%" stop-color="#111111" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#111111" stop-opacity="1"/>
+    </linearGradient>
+  <mask id="imagine-text-gaps-jdotax" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="960" height="530" fill="white"/><rect x="-22.7499942779541" y="24.624431610107422" width="437.06219482421875" height="367.62042236328125" fill="black" rx="2"/><rect x="76" y="118.35855102539062" width="299.9766845703125" height="16.396150588989258" fill="black" rx="2"/><rect x="76" y="135.35899353027344" width="213.93817138671875" height="105.92390441894531" fill="black" rx="2"/><rect x="76" y="225.35899353027344" width="320.0645446777344" height="106.14888763427734" fill="black" rx="2"/><rect x="76" y="310.3589782714844" width="353.6072692871094" height="106.14891052246094" fill="black" rx="2"/><rect x="636" y="124.43419647216797" width="181.26637268066406" height="52.207252502441406" fill="black" rx="2"/><rect x="634" y="179.4342041015625" width="181.26634216308594" height="52.207252502441406" fill="black" rx="2"/><rect x="632" y="234.4342041015625" width="181.26629638671875" height="52.207252502441406" fill="black" rx="2"/><rect x="630.0000610351562" y="289.4342041015625" width="211.52499389648438" height="52.207252502441406" fill="black" rx="2"/><rect x="628" y="344.4342041015625" width="211.52499389648438" height="52.207252502441406" fill="black" rx="2"/><rect x="858.978271484375" y="154.73590087890625" width="23.021724700927734" height="13.641450881958008" fill="black" rx="2"/><rect x="858.978271484375" y="209.73590087890625" width="23.021724700927734" height="13.641450881958008" fill="black" rx="2"/><rect x="858.978271484375" y="264.73590087890625" width="23.021724700927734" height="13.641450881958008" fill="black" rx="2"/><rect x="858.978271484375" y="319.73590087890625" width="23.021724700927734" height="13.641450881958008" fill="black" rx="2"/><rect x="858.978271484375" y="374.73590087890625" width="23.021724700927734" height="13.641450881958008" fill="black" rx="2"/><rect x="76" y="493.35858154296875" width="438.4649353027344" height="16.396150588989258" fill="black" rx="2"/></mask></defs>
+
+  <rect width="960" height="520" fill="url(#bg)" style="stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Large ghost letters background -->
+  <text x="-10" y="320" font-family="Georgia,serif" font-size="320" font-weight="700" fill="white" opacity="0.03" letter-spacing="-10" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.03;font-family:Georgia, serif;font-size:320px;font-weight:700;text-anchor:start;dominant-baseline:auto">Aa</text>
+
+  <!-- Grid lines subtle -->
+  <line x1="0" y1="260" x2="960" y2="260" stroke="white" stroke-width="0.4" opacity="0.04" mask="url(#imagine-text-gaps-jdotax)" style="fill:rgb(0, 0, 0);stroke:rgb(255, 255, 255);color:rgb(0, 0, 0);stroke-width:0.4px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.04;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="480" y1="0" x2="480" y2="520" stroke="white" stroke-width="0.4" opacity="0.04" mask="url(#imagine-text-gaps-jdotax)" style="fill:rgb(0, 0, 0);stroke:rgb(255, 255, 255);color:rgb(0, 0, 0);stroke-width:0.4px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.04;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Blue accent line top -->
+  <rect x="80" y="100" width="60" height="2" fill="#4f8ef7" style="fill:rgb(79, 142, 247);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Main label -->
+  <text x="80" y="130" font-family="Arial,sans-serif" font-size="11" fill="#4f8ef7" letter-spacing="4" font-weight="600" style="fill:rgb(79, 142, 247);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:11px;font-weight:600;text-anchor:start;dominant-baseline:auto">TYPOGRAPHY · BRANDING · 2026</text>
+
+  <!-- Big headline -->
+  <text x="80" y="220" font-family="Georgia,serif" font-size="90" font-weight="700" fill="white" letter-spacing="-3" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:90px;font-weight:700;text-anchor:start;dominant-baseline:auto">Font</text>
+  <text x="80" y="310" font-family="Georgia,serif" font-size="90" font-weight="700" fill="white" letter-spacing="-3" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:90px;font-weight:700;text-anchor:start;dominant-baseline:auto">Shapes</text>
+  <text x="80" y="395" font-family="Georgia,serif" font-size="90" font-weight="700" fill="white" letter-spacing="-3" opacity="0.18" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.18;font-family:Georgia, serif;font-size:90px;font-weight:700;text-anchor:start;dominant-baseline:auto">Feeling.</text>
+
+  <!-- Right side: visual element — stacked font weight bars -->
+  <g opacity="0.9" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.9;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <!-- Thin -->
+    <text x="640" y="165" font-family="Georgia,serif" font-size="42" font-weight="100" fill="white" opacity="0.18" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.18;font-family:Georgia, serif;font-size:42px;font-weight:100;text-anchor:start;dominant-baseline:auto">Branding</text>
+    <!-- Light -->
+    <text x="638" y="220" font-family="Georgia,serif" font-size="42" font-weight="300" fill="white" opacity="0.32" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.32;font-family:Georgia, serif;font-size:42px;font-weight:300;text-anchor:start;dominant-baseline:auto">Branding</text>
+    <!-- Regular -->
+    <text x="636" y="275" font-family="Georgia,serif" font-size="42" font-weight="400" fill="white" opacity="0.52" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.52;font-family:Georgia, serif;font-size:42px;font-weight:400;text-anchor:start;dominant-baseline:auto">Branding</text>
+    <!-- Medium -->
+    <text x="634" y="330" font-family="Georgia,serif" font-size="42" font-weight="600" fill="white" opacity="0.72" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.72;font-family:Georgia, serif;font-size:42px;font-weight:600;text-anchor:start;dominant-baseline:auto">Branding</text>
+    <!-- Bold -->
+    <text x="632" y="385" font-family="Georgia,serif" font-size="42" font-weight="700" fill="white" opacity="0.95" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.95;font-family:Georgia, serif;font-size:42px;font-weight:700;text-anchor:start;dominant-baseline:auto">Branding</text>
+  </g>
+
+  <!-- Weight labels -->
+  <text x="878" y="165" font-family="Arial,sans-serif" font-size="9" fill="white" opacity="0.2" text-anchor="end" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.2;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:end;dominant-baseline:auto">100</text>
+  <text x="878" y="220" font-family="Arial,sans-serif" font-size="9" fill="white" opacity="0.3" text-anchor="end" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.3;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:end;dominant-baseline:auto">300</text>
+  <text x="878" y="275" font-family="Arial,sans-serif" font-size="9" fill="white" opacity="0.4" text-anchor="end" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.4;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:end;dominant-baseline:auto">400</text>
+  <text x="878" y="330" font-family="Arial,sans-serif" font-size="9" fill="white" opacity="0.55" text-anchor="end" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.55;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:end;dominant-baseline:auto">600</text>
+  <text x="878" y="385" font-family="Arial,sans-serif" font-size="9" fill="white" opacity="0.7" text-anchor="end" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:Arial, sans-serif;font-size:9px;font-weight:400;text-anchor:end;dominant-baseline:auto">700</text>
+
+  <!-- Vertical divider -->
+  <line x1="618" y1="120" x2="618" y2="420" stroke="white" stroke-width="0.5" opacity="0.1" style="fill:rgb(0, 0, 0);stroke:rgb(255, 255, 255);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Bottom blue line -->
+  <rect x="0" y="480" width="960" height="1.5" fill="url(#blueLine)" style="stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Bottom caption -->
+  <text x="80" y="505" font-family="Arial,sans-serif" font-size="10" fill="white" opacity="0.25" letter-spacing="2" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.25;font-family:Arial, sans-serif;font-size:10px;font-weight:400;text-anchor:start;dominant-baseline:auto">NOVLO INSIGHTS — WHY FONT CHOICE MATTERS FOR BRANDING</text>
+</svg>

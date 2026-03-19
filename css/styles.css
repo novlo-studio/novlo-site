@@ -2671,6 +2671,24 @@ a:hover {
     left: 0;
     color: var(--accent);
 }
+/* blog img */
+.insights_img {
+  display: block;
+  width: 100%;
+  max-width: 920px;
+  height: auto;
+  margin: 28px auto;
+  border-radius: 16px;
+}
+
+.article-intro .insights_img {
+  margin: 0 auto 28px;
+}
+
+.article-point .insights_img,
+.article-conclusion .insights_img {
+  margin: 20px auto 28px;
+}
 
 /* Article Share */
 .article-share {
