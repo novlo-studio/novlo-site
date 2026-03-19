@@ -275,6 +275,20 @@ function initFormHandling() {
     }
 }
 
+// contact.html form submit handler
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // 폼 데이터 저장
+    const formData = {
+        name: document.getElementById('name').value,
+        projectType: document.getElementById('project-type').value,
+        style: document.getElementById('style')?.value || '',
+        budget: document.getElementById('budget').value,
+        timeline: document.getElementById('timeline').value,
+        message: document.getElementById('message').value
+    };
+    sessionStorage.setItem('novloFormData', JSON.stringify(formData));
+});
+
 // Gallery hover effects
 document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('mouseenter', function() {

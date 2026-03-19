@@ -42,6 +42,29 @@
                 <h1 class="page-title">Thank You!</h1>
                 <p class="page-subtitle">Your message has been received. I'll review your project details and get back to you within <strong>24 hours</strong>.</p>
                 
+            <!-- Summary of form -->
+            <div class="submission-summary" id="submission-summary" style="display: none;">
+                <h3>Your Project Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span class="summary-label">Project Type</span>
+                        <span class="summary-value" id="summary-type"></span>
+                    </div>
+                    <div class="summary-item" id="summary-style-row" style="display: none;">
+                        <span class="summary-label">Design Style</span>
+                        <span class="summary-value" id="summary-style"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Budget Range</span>
+                        <span class="summary-value" id="summary-budget"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Timeline</span>
+                        <span class="summary-value" id="summary-timeline"></span>
+                    </div>
+                </div>
+            </div>      
+
                 <!-- next steps -->
                 <div class="next-steps">
                     <h3>What happens next?</h3>
@@ -78,6 +101,63 @@
     <!-- Footer -->
     <div data-include="includes/footer.html"></div>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const formData = JSON.parse(sessionStorage.getItem('novloFormData') || '{}');
+        
+        if (formData.projectType) {
+            document.getElementById('submission-summary').style.display = 'block';
+            
+            // Project Type 
+            const typeLabels = {
+                'web-design': 'Web Design',
+                'seo': 'SEO Optimization',
+                'shopify': 'Shopify / E-commerce',
+                'ai-visuals': 'AI Product Visuals',
+                'other': 'Other'
+            };
+            document.getElementById('summary-type').textContent = typeLabels[formData.projectType] || formData.projectType;
+            
+            // Style (only when they select Web Design)
+            if (formData.style && formData.projectType === 'web-design') {
+                document.getElementById('summary-style-row').style.display = 'flex';
+                const styleLabels = {
+                    'warm-neutral': 'Warm Neutral Premium',
+                    'earthy-natural': 'Earthy Natural Wellness',
+                    'clean-medical': 'Clean Medical Professional',
+                    'modern-local': 'Modern Local Business',
+                    'custom-style': 'Custom / Something New',
+                    'not-sure-style': 'Not Sure Yet'
+                };
+                document.getElementById('summary-style').textContent = styleLabels[formData.style] || formData.style;
+            }
+            
+            // Budget 
+            const budgetLabels = {
+                'under-1k': 'Under CA$1,000',
+                '1k-3k': 'CA$1,000 – 3,000',
+                '3k-5k': 'CA$3,000 – 5,000',
+                '5k-plus': 'CA$5,000+',
+                'not-sure': 'Not sure yet',
+                '': 'Not specified'
+            };
+            document.getElementById('summary-budget').textContent = budgetLabels[formData.budget] || 'Not specified';
+            
+            // Timeline 
+            const timelineLabels = {
+                'asap': 'ASAP',
+                '2-4-weeks': '2–4 weeks',
+                '1-2-months': '1–2 months',
+                'flexible': 'Flexible',
+                '': 'Not specified'
+            };
+            document.getElementById('summary-timeline').textContent = timelineLabels[formData.timeline] || 'Not specified';
+            
+            // 사용 후 데이터 삭제 (선택사항)
+            sessionStorage.removeItem('novloFormData');
+        }
+    });
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
