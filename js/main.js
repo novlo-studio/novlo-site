@@ -555,6 +555,63 @@ function initContactForm() {
     const btnLoading = submitBtn?.querySelector('.btn-loading');
     
     if (!form) return;
+
+    document.querySelectorAll('.form-group select[required]').forEach(select => {
+    select.addEventListener('change', function() {
+        if (this.value !== '') {
+        this.classList.add('is-valid');
+        } else {
+        this.classList.remove('is-valid');
+        }
+    });
+    });
+
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+
+    function resetFieldError(input, errorEl) {
+        if (input) input.classList.remove('is-invalid');
+        if (errorEl) errorEl.textContent = '';
+    }
+
+    function setFieldError(input, errorEl, message) {
+        if (input) input.classList.add('is-invalid');
+        if (errorEl) errorEl.textContent = message;
+    }
+
+    function validateName() {
+        if (!nameInput) return true;
+
+        const value = nameInput.value.trim();
+
+        if (value.length < 2) {
+            setFieldError(nameInput, nameError, 'Please enter at least 2 characters for your name.');
+            return false;
+        }
+
+        resetFieldError(nameInput, nameError);
+        return true;
+    }
+
+    function validateEmail() {
+        if (!emailInput) return true;
+
+        const value = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(value)) {
+            setFieldError(emailInput, emailError, 'Please enter a valid email address.');
+            return false;
+        }
+
+        resetFieldError(emailInput, emailError);
+        return true;
+    }
+
+    nameInput?.addEventListener('input', validateName);
+    emailInput?.addEventListener('input', validateEmail);
     
     form.addEventListener('submit', async function(e) {
         e.preventDefault();

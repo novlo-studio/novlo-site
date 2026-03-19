@@ -2816,11 +2816,17 @@ a:hover {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--text-primary);
+    color: #9d9d9d;
     font-weight: 500;
     font-size: 0.875rem;
 }
-
+.form-group .form-require {
+    color: #d11818;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -2845,6 +2851,26 @@ a:hover {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+    border-color: #4f1b16;
+}
+
+.form-group select.is-valid,
+.form-group input:valid {
+    border-color: #124126;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    display: none;
+    margin-top: 5px;
+}
+
+.form-group input:invalid:not(:placeholder-shown) + .error-message {
+    display: block;
 }
 
 .form-note {

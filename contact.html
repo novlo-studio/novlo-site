@@ -67,17 +67,19 @@
                         </div>
                         <input type="hidden" name="_subject" value="New Project Inquiry — NOVLO">
                         <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" required autocomplete="name"> 
+                            <label for="name">Name <span class="form-require">*</span></label>
+                            <input type="text" id="name" name="name" required autocomplete="name" minlength="3"> 
+                            <span class="error-message" id="name-error"></span>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required autocomplete="email">
+                            <label for="email">Email <span class="form-require">*</span></label>
+                            <input type="email" id="email" name="email" required autocomplete="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+                            <span class="error-message" id="email-error"></span>
                         </div>
                         
                         <div class="form-group">
-                            <label for="project-type">Project Type *</label>
+                            <label for="project-type">Project Type <span class="form-require">*</span></label>
                             <select id="project-type" name="project-type" required>
                                 <option value="">Select a service</option>
                                 <option value="web-design">Web Design (Starter / Business / Immersive)</option>
@@ -89,7 +91,7 @@
                         </div>
                         <!-- only visivle when project type is Web Design -->
                         <div class="form-group" id="style-group" style="display: none;">
-                            <label for="style">Design Style *</label>
+                            <label for="style">Design Style <span class="form-require">*</span></label>
                             <select id="style" name="style" required>
                                 <option value="">Select a style</option>
                                 <option value="warm-neutral">Warm Neutral Premium</option>
@@ -122,7 +124,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message">Tell me about your project *</label>
+                            <label for="message">Tell me about your project <span class="form-require">*</span></label>
                             <textarea id="message" name="message" rows="5" placeholder="What are you looking to build? Share your goals, timeline, and any key details?" required></textarea>
                         </div>
                         
