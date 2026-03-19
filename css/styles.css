@@ -411,17 +411,22 @@ a:hover {
 .hero-subtitle {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
     font-weight: 500;
 }
 
 .hero-text {
     font-size: 1.125rem;
     color: var(--text-muted);
-    margin-bottom: 3rem;
+    margin-bottom: .5rem;
     max-width: 600px;
 }
-
+.hero-text-seo{
+    color: #f1f1f1;
+}
+.hero-content .btn {
+    margin-top: 2rem;
+}
 .hero-scroll {
     /* position: absolute;left: 50%; */
     bottom: -2rem;
