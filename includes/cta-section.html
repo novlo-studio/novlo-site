@@ -3,7 +3,11 @@
         <div class="cta-content">
             <h2>Ready to build something meaningful?</h2>
             <p>Whether it's a website, Shopify store, or AI visuals — let's discuss your project.</p>
-            <a href="/contact.html" class="btn btn-primary btn-large">Start a Conversation</a>
+            <a href="/contact.html" class="btn btn-primary btn-large" 
+                onclick="gtag('event', 'click_cta', {
+                    cta: 'start_conversation',
+                    location: 'cta_section'
+                });">Start a Conversation</a>
         </div>
     </div>
 </section>

@@ -41,7 +41,11 @@
             <p class="page-subtitle">Choose a website style that fits your business. We customize it for you</p>
             
             <div class="hero-buttons">
-                <a href="/contact.html?type=web-design" class="btn btn-primary btn-large">Get a Quote</a>
+                <a href="/contact.html?type=web-design" class="btn btn-primary btn-large" 
+                onclick="gtag('event', 'click_cta', {
+                event_category: 'engagement',
+                event_label: 'get_quote_style'
+                });">Get a Quote</a>
                 <a href="/services.html#starter" class="btn btn-secondary btn-large">See Pricing</a>
             </div>
             
@@ -71,7 +75,11 @@
                             <span class="tag">Nails</span>
                             <span class="tag">Aesthetics</span>
                         </div>
-                        <a href="#style-01" class="btn btn-outline btn-small">View Details</a>
+                        <a href="#style-01" class="btn btn-outline btn-small" 
+                        onclick="gtag('event', 'click_cta', {
+                        cta: 'Warm_neutral',
+                        location: 'style'
+                        });">View Details</a>
                     </div>
                 </article>
 
@@ -88,7 +96,11 @@
                             <span class="tag">Scalp care</span>
                             <span class="tag">Spa</span>
                         </div>
-                        <a href="#style-02" class="btn btn-outline btn-small">View Details</a>
+                        <a href="#style-02" class="btn btn-outline btn-small"
+                        onclick="gtag('event', 'click_cta', {
+                        cta: 'earthy_natural',
+                        location: 'style'
+                        });">View Details</a>
                     </div>
                 </article>
 
@@ -105,7 +117,11 @@
                             <span class="tag">Dental</span>
                             <span class="tag">Physio</span>
                         </div>
-                        <a href="#style-03" class="btn btn-outline btn-small">View Details</a>
+                        <a href="#style-03" class="btn btn-outline btn-small"
+                        onclick="gtag('event', 'click_cta', {
+                        cta: 'clean_medical',
+                        location: 'style'
+                        });">View Details</a>
                     </div>
                 </article>
 
@@ -157,7 +173,11 @@
                         <p>Beauty salons, nail studios, skincare clinics, aesthetic centers, wellness spas</p>
                     </div>
                     
-                    <a href="/contact.html?type=web-design&style=warm-neutral" class="btn btn-primary">Choose this style</a>
+                    <a href="/contact.html?type=web-design&style=warm-neutral" class="btn btn-primary" 
+                    onclick="gtag('event', 'click_cta', {
+                    cta: 'Warm_neutral',
+                    location: 'style'
+                    });">Choose this style</a>
                 </div>
             </article>
 
@@ -185,7 +205,11 @@
                         <p>Wellness centers, scalp care clinics, organic spas, holistic health, yoga studios</p>
                     </div>
                     
-                    <a href="/contact.html?type=web-design&style=earthy-natural" class="btn btn-primary">Choose this style</a>
+                    <a href="/contact.html?type=web-design&style=earthy-natural" class="btn btn-primary"
+                    onclick="gtag('event', 'click_cta', {
+                    cta: 'earthy_natural',
+                    location: 'style'
+                    });">Choose this style</a>
                 </div>
             </article>
 
@@ -213,7 +237,11 @@
                         <p>Medical clinics, dental practices, physiotherapy centers, chiropractic care, health services</p>
                     </div>
                     
-                    <a href="/contact.html?type=web-design&style=clean-medical" class="btn btn-primary">Choose this style</a>
+                    <a href="/contact.html?type=web-design&style=clean-medical" class="btn btn-primary" 
+                    onclick="gtag('event', 'click_cta', {
+                    cta: 'clean_medical',
+                    location: 'style'
+                    });">Choose this style</a>
                 </div>
             </article>
 
@@ -241,7 +269,11 @@
                         <p>Cafés, restaurants, boutiques, local retail, creative studios, food trucks</p>
                     </div>
                     
-                    <a href="/contact.html?type=web-design&style=modern-local" class="btn btn-primary">Choose this style</a>
+                    <a href="/contact.html?type=web-design&style=modern-local" class="btn btn-primary" 
+                    onclick="gtag('event', 'click_cta', {
+                    cta: 'modern_local',
+                    location: 'style'
+                    });">Choose this style</a>
                 </div>
             </article>
         </div>
@@ -255,7 +287,11 @@
                 <p>We'll help you choose based on your brand, audience, and goals. Free consultation.</p>
                 <div class="cta-buttons">
                     <a href="/contact.html?type=web-design&style=not-sure-style" class="btn btn-primary btn-large">Get Free Consultation</a>
-                    <a href="/services.html" class="btn btn-secondary btn-large">View Services</a>
+                    <a href="/services.html" class="btn btn-secondary btn-large" 
+                    onclick="gtag('event', 'click_cta', {
+                    cta: 'not_sure',
+                    location: 'style'
+                    });">View Services</a>
                 </div>
             </div>
         </div>

@@ -54,7 +54,11 @@
                 <p class="hero-subtitle">A new flow for modern brands</p>
                 <p class="hero-text">Modern websites built with clarity, performance, and long-term growth<br></p>
                 <p class="hero-text hero-text-seo">Website design in Vancouver for small businesses<br></p>
-                <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+                <a href="contact.html" class="btn btn-primary"
+                onclick="gtag('event', 'click_cta', {
+                cta: 'start_project',
+                location: 'Home'
+                });">Start Your Project</a>
             </div>
             <div class="hero-scroll">
                 <span>Scroll</span>
@@ -215,20 +219,32 @@
                     </div>
                     <h3>Starter</h3>
                     <p>One-page website with 5 core sections. Ideal for new offers, service businesses, or personal brands.</p>
-                    <a href="services.html#starter" class="link-arrow">See Starter details</a>
+                    <a href="services.html#starter" class="link-arrow" 
+                    onclick="gtag('event', 'click_cta', {
+                        cta: 'starter_details',
+                        location: 'Home'
+                    });">See Starter details</a>
                 </div>
                 <div class="service-card featured">
                     <span class="service-badge">Popular</span>
                     <span class="service-price">CA$2,500+</span>
                     <h3>Business</h3>
                     <p>Multi-page website with advanced features. Shopify setup available as an add-on.</p>
-                    <a href="services.html#business" class="link-arrow">See Business details</a>
+                    <a href="services.html#business" class="link-arrow" 
+                    onclick="gtag('event', 'click_cta', {
+                        cta: 'business_details',
+                        location: 'Home'
+                    });">See Business details</a>
                 </div>
                 <div class="service-card">
                     <span class="service-price">CA$4,000+</span>
                     <h3>Immersive</h3>
                     <p>3D experiences and custom interactions. For brands that want to make a statement.</p>
-                    <a href="services.html#immersive" class="link-arrow">See Immersive details</a>
+                    <a href="services.html#immersive" class="link-arrow"  
+                    onclick="gtag('event', 'click_cta', {
+                        cta: 'immersive_details',
+                        location: 'Home'
+                    });">See Immersive details</a>
                 </div>
             </div>
         </div>
@@ -289,7 +305,11 @@
                 </section>
             </div>
             <div class="ai-cta">
-                <a href="ai-visuals.html" class="btn btn-secondary">View Gallery</a>
+                <a href="ai-visuals.html" class="btn btn-secondary" 
+                onclick="gtag('event', 'click_cta', {
+                    cta: 'view_gallery',
+                    location: 'Home'
+                });">View Gallery</a>
                 <span class="ai-price">Starting from CA$200 per set</span>
             </div>
         </div>

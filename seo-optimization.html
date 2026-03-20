@@ -42,7 +42,11 @@
             <span class="page-label">SEO & Growth Optimization</span>
             <h1 class="page-title">Your website isn't showing up on Google</h1>
             <p class="page-subtitle">And it may be costing you potential customers — most websites look good but don’t get found</p>
-            <a href="/contact.html?type=seo" class="btn btn-primary btn-large seo-btn">Get SEO Audit</a>
+            <a href="/contact.html?type=seo" class="btn btn-primary btn-large seo-btn" 
+            onclick="gtag('event', 'click_cta', {
+            cta: 'start_conversation',
+            location: 'SEO'
+            });">Get SEO Audit</a>
         </div>
     </section>
 
@@ -194,7 +198,11 @@
             <div class="cta-box">
                 <h2>Let's make your website actually work</h2>
                 <p>Start with a simple SEO audit and see what's holding your site back</p>
-                <a href="/contact.html?type=seo" class="btn btn-primary btn-large">Start a Conversation</a>
+                <a href="/contact.html?type=seo" class="btn btn-primary btn-large" 
+                onclick="gtag('event', 'click_cta', {
+                cta: 'start_conversation',
+                location: 'SEO'
+                });">Start a Conversation</a>
             </div>
         </div>
     </section>
