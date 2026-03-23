@@ -34,7 +34,24 @@
 </head>
 <body>
     <!-- Navigation -->
-    <div data-include="/includes/nav.html"></div>
+    <nav class="nav" id="nav">
+        <div class="container nav-container">
+            <a href="/" class="logo">NOVLO</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/" data-nav="home">Home</a></li>
+                <li><a href="/services.html" data-nav="services">Services</a></li>
+                <li><a href="/styles.html" data-nav="styles">Styles</a></li>
+                <li><a href="/seo-optimization.html" data-nav="seo-optimization">SEO & Growth Optimization</a></li>
+                <li><a href="/ai-visuals.html" data-nav="ai-visuals">AI Visuals</a></li>
+                <li><a href="/insights.html" data-nav="insights">Insights</a></li>
+                <li><a href="/contact.html" class="nav-cta" data-nav="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Article Header -->
     <section class="page-hero article-hero">
@@ -239,7 +256,35 @@
     <div data-include="/includes/cta-section.html"></div>
 
     <!-- Footer -->
-    <div data-include="/includes/footer.html"></div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo"><img src="/images/novlo_logo.png" alt="NOVLO" width="80" height="80"></span>
+                    <p>Thoughtful digital experiences by T. Kim.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="/index.html">Home</a>
+                    <a href="/services.html">Services</a>
+                    <a href="/styles.html">Styles</a>
+                    <a href="/seo-optimization.html">SEO & Growth Optimization</a>
+                    <a href="/ai-visuals.html">AI Visuals</a>
+                    <a href="/insights.html">Insights</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
+                
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NOVLO. Made by T. Kim.</p>
+                <a href="#" id="email-footer" class="footer-icon" aria-label="Email">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon-mail">
+                        <path class="mail-body" d="M4 6h16v12H4z"></path>
+                        <path class="mail-flap" d="M22 6l-10 7L2 6"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <script src="/js/main.js"></script>
 </body>
