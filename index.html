@@ -25,7 +25,7 @@
     <link rel="canonical" href="https://novlo.studio">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@700;800&display=swap&family=Inter:wght@900" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="icon" href="/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -64,49 +64,51 @@
 <body>
     <!-- Navigation - Dynamically Loaded -->
     <nav class="nav" id="nav">
-        <div class="container nav-container">
-            <a href="/" class="logo">NOVLO</a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="/" data-nav="home">Home</a></li>
-                <li><a href="/services.html" data-nav="services">Services</a></li>
-                <li><a href="/styles.html" data-nav="styles">Styles</a></li>
-                <li><a href="/seo-optimization.html" data-nav="seo-optimization">SEO & Growth Optimization</a></li>
-                <li><a href="/ai-visuals.html" data-nav="ai-visuals">AI Visuals</a></li>
-                <li><a href="/insights.html" data-nav="insights">Insights</a></li>
-                <li><a href="/contact.html" class="nav-cta" data-nav="contact">Contact</a></li>
-            </ul>
-        </div>
+        <a href="/" class="nav-logo">NOVLO</a>
+        <ul class="nav-links" id="navMenu">
+            <li><a href="/" data-nav="home">Home</a></li>
+            <li><a href="/services.html" data-nav="services">Services</a></li>
+            <li><a href="/styles.html" data-nav="styles">Styles</a></li>
+            <li><a href="/seo-optimization.html" data-nav="seo-optimization">SEO & Growth Optimization</a></li>
+            <li><a href="/ai-visuals.html" data-nav="ai-visuals">AI Visuals</a></li>
+            <li><a href="/insights.html" data-nav="insights">Insights</a></li>
+        </ul>
+        <a href="/contact.html" class="nav-cta" data-nav="contact">Contact</a>
+        <button class="nav-hamburger" id="navToggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
     <!-- Hero -->
     <section class="hero">
-        <div class="bg-lines"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="visually-hidden">
-                Website design in Vancouver for small businesses
-                </h1>
-                <div class="hero-title-3d">
-                    <span class="text-layer layer-back">NOVLO</span>
-                    <span class="text-layer layer-mid">NOVLO</span>
-                    <span class="text-layer layer-front">NOVLO</span>
-                </div>
-                <p class="hero-subtitle">A new flow for modern brands</p>
-                <p class="hero-text">Modern websites built with clarity, performance, and long-term growth<br></p>
-                <a href="contact.html" class="btn btn-primary"
-                onclick="gtag('event', 'click_cta', {
-                cta: 'start_project',
-                location: 'Home'
-                });">Start Your Project</a>
+        <canvas id="hero-canvas"></canvas>
+        <div class="vignette"></div>
+
+        <div class="hero-content">
+            <div class="bg-lines"></div>
+            <h1 class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+            Website design in Vancouver for small businesses
+            </h1>
+
+            <div class="hero-title-wrap">
+            <div id="hero-title">NOVLO</div>
             </div>
-            <div class="hero-scroll">
-                <span>Scroll</span>
-                <div class="scroll-line"></div>
+
+            <div class="hero-sub-group" id="heroSub">
+            <p class="hero-subtitle">A new flow for modern brands</p>
+            <p class="hero-text">Modern websites built with clarity, performance, and long-term growth</p>
+            <a href="contact.html" class="btn btn-primary"
+                onclick="typeof gtag!=='undefined'&&gtag('event','click_cta',{cta:'start_project',location:'Home'});">
+                Start Your Project
+            </a>
             </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
@@ -300,6 +302,7 @@
                 <span class="section-label">AI Visuals</span>
                 <h2 class="section-title">Product Assets That Convert</h2>
                 <p class="section-subtitle">Professional AI-generated images for Amazon, Shopify, and marketing</p>
+                <p class="section-subtitle">— No expensive photoshoot needed<br>— professional product images generated by AI</p>
             </div>
             <div class="ai-gallery-preview">
                 <!-- Gallery -->
@@ -410,6 +413,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -41,10 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
         initProcessAccordion();
         initScrollEffects();
         initFormHandling();
-        initHeroTilt();
+        // initHeroTilt();
         initLightbox();
         initContactForm()
         setProtectedEmails();
+        initHeroThree();
     }, 100);
     
 });
@@ -53,15 +54,19 @@ document.addEventListener('DOMContentLoaded', function() {
 function initNavigation() {
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
-    
+
     if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+        navToggle.addEventListener('click', function () {
+            navMenu.classList.toggle('open');
+            navToggle.classList.toggle('open');
+            document.body.classList.toggle('nav-open');
         });
-        
+
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                document.body.classList.remove('nav-open');
             });
         });
     }
@@ -100,66 +105,6 @@ function highlightCurrentPage() {
             link.style.fontWeight = '';
         }
     });
-}
-
-// Hero 3D Tilt Effect - Aggressive tilt like the reference
-function initHeroTilt() {
-    const heroTitle = document.querySelector('.hero-title-3d');
-    const hero = document.querySelector('.hero');
-    
-    if (!heroTitle || !hero) return;
-    
-    let rafId = null;
-    let targetRotateX = 15;   // 기본값
-    let targetRotateY = -10;  // 기본값
-    let targetRotateZ = -5;   // 기본값
-    let currentRotateX = 15;
-    let currentRotateY = -10;
-    let currentRotateZ = -5;
-    
-    function lerp(start, end, factor) {
-        return start + (end - start) * factor;
-    }
-    
-    function updateTransform() {
-        currentRotateX = lerp(currentRotateX, targetRotateX, 0.08);
-        currentRotateY = lerp(currentRotateY, targetRotateY, 0.08);
-        currentRotateZ = lerp(currentRotateZ, targetRotateZ, 0.08);
-        
-        // 부유 애니메이션과 합치기
-        const floatY = Math.sin(Date.now() / 1000) * 15;
-        
-        heroTitle.style.transform = `
-            rotateX(${currentRotateX}deg)
-            rotateY(${currentRotateY}deg)
-            rotateZ(${currentRotateZ}deg)
-            translateY(${floatY}px)
-        `;
-        
-        rafId = requestAnimationFrame(updateTransform);
-    }
-    
-    hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const percentX = (e.clientX - rect.left - centerX) / centerX;
-        const percentY = (e.clientY - rect.top - centerY) / centerY;
-        
-        // 더 극적인 틸트 (±20도)
-        targetRotateY = -10 + (percentX * 20);
-        targetRotateX = 15 + (percentY * -20);
-        targetRotateZ = -5 + (percentX * 10);
-    });
-    
-    hero.addEventListener('mouseleave', () => {
-        targetRotateX = 15;
-        targetRotateY = -10;
-        targetRotateZ = -5;
-    });
-    
-    updateTransform();
 }
 
 // Scroll Effects
@@ -700,4 +645,469 @@ function setProtectedEmails() {
     footerEmail.href = `mailto:${email}`;
     // footerEmail.textContent = email;
   }
+}
+
+/* ==========================================
+   HERO THREE - NOVLO BURST / BUILD / IDLE
+========================================== */
+
+function initHeroThree() {
+    const IS_MOBILE = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || innerWidth < 768;
+    const DPR       = Math.min(devicePixelRatio, IS_MOBILE ? 1.5 : 2);
+
+    // ── Renderer ─────────────────────────────────────────────
+    const canvas   = document.getElementById('hero-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !IS_MOBILE, alpha: true });
+    renderer.setPixelRatio(DPR);
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setClearColor(0x000000, 0);
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(52, innerWidth / innerHeight, 0.1, 300);
+    camera.position.set(0, 0, 28);
+
+    // ── Pointer ───────────────────────────────────────────────
+    const ptr = { x: 0, y: 0, tx: 0, ty: 0 };
+    const onMove = (cx, cy) => {
+    ptr.tx = (cx / innerWidth)  * 2 - 1;
+    ptr.ty = -(cy / innerHeight) * 2 + 1;
+    };
+    window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
+    window.addEventListener('touchmove', e => onMove(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    if (IS_MOBILE && window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', e => {
+        if (e.gamma != null) {
+        ptr.tx = Math.max(-1, Math.min(1, e.gamma / 20));
+        ptr.ty = Math.max(-1, Math.min(1, (e.beta - 30) / -25));
+        }
+    });
+    }
+
+    // ── Easing helpers ───────────────────────────────────────
+    const easeOutExpo  = x => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    const easeInExpo   = x => x <= 0 ? 0 : Math.pow(2, 10 * x - 10);
+    const easeOutCubic = x => 1 - Math.pow(1 - x, 3);
+    const easeInOutQuad= x => x < .5 ? 2*x*x : 1 - Math.pow(-2*x+2,2)/2;
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    // ── Particle counts ───────────────────────────────────────
+    const TEXT_P   = IS_MOBILE ? 2800 : 6000;   // converge to text
+    const ORBIT_P  = IS_MOBILE ?  300 :  700;   // orbit the sphere
+    const TOTAL_P  = TEXT_P + ORBIT_P;
+
+    // ── Sample NOVLO text pixels ─────────────────────────────
+    function sampleTextPositions(count) {
+    // Draw NOVLO onto offscreen canvas, sample filled pixels
+    const oc  = document.createElement('canvas');
+    const vw  = Math.min(innerWidth, 1400);
+    const fs  = Math.floor(vw * 0.16);          // font size
+    oc.width  = Math.floor(vw * 0.95);
+    oc.height = Math.floor(fs * 1.6);
+    const ctx = oc.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.font      = `900 ${fs}px Inter, Arial Black, sans-serif`;
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('NOVLO', oc.width / 2, oc.height / 2);
+
+    const data   = ctx.getImageData(0, 0, oc.width, oc.height).data;
+    const pixels = [];
+    const step   = IS_MOBILE ? 4 : 3;   // sample every N pixels for density
+    for (let y = 0; y < oc.height; y += step) {
+        for (let x = 0; x < oc.width; x += step) {
+        if (data[(y * oc.width + x) * 4 + 3] > 128) {
+            pixels.push([x, y]);
+        }
+        }
+    }
+
+    // Map to Three.js world coordinates (centred)
+    const scaleX = (oc.width  / oc.height) * 22;  // world width
+    const scaleY = 22;
+    const pts = [];
+    for (let i = 0; i < count; i++) {
+        const [px, py] = pixels[Math.floor(Math.random() * pixels.length)];
+        pts.push(
+        (px / oc.width  - 0.5) * scaleX,
+        -(py / oc.height - 0.5) * scaleY,
+        (Math.random() - .5) * 0.3           // tiny Z jitter
+        );
+    }
+    return pts;
+    }
+
+    const textTargets = sampleTextPositions(TEXT_P);  // [x,y,z, x,y,z …]
+
+    // ── Build particle positions array ───────────────────────
+    // Layout: [0 … TEXT_P-1] = text particles, [TEXT_P … TOTAL_P-1] = orbit particles
+    const positions  = new Float32Array(TOTAL_P * 3);
+    const velocities = new Float32Array(TOTAL_P * 3);  // for explosion phase
+    const phases     = new Float32Array(TOTAL_P);       // random offset for wobble
+
+    // ─ Initial state: all particles packed on small sphere (radius 1.5) ─
+    const INIT_R = 1.5;
+    for (let i = 0; i < TOTAL_P; i++) {
+    const θ = Math.random() * Math.PI * 2;
+    const φ = Math.acos(2 * Math.random() - 1);
+    positions[i*3]   = INIT_R * Math.sin(φ) * Math.cos(θ);
+    positions[i*3+1] = INIT_R * Math.sin(φ) * Math.sin(θ);
+    positions[i*3+2] = INIT_R * Math.cos(φ);
+    // explosion velocity — radially outward + random
+    const speed = 0.18 + Math.random() * 0.28;
+    velocities[i*3]   = positions[i*3]   / INIT_R * speed + (Math.random()-.5)*.08;
+    velocities[i*3+1] = positions[i*3+1] / INIT_R * speed + (Math.random()-.5)*.08;
+    velocities[i*3+2] = positions[i*3+2] / INIT_R * speed * .4;
+    phases[i] = Math.random() * Math.PI * 2;
+    }
+
+    // Orbit particles: build their sphere targets (radius ~9 around text)
+    const ORBIT_R  = 9.5;
+    const orbitTargets = new Float32Array(ORBIT_P * 3);
+    for (let i = 0; i < ORBIT_P; i++) {
+    const θ = Math.random() * Math.PI * 2;
+    const φ = Math.acos(2 * Math.random() - 1);
+    orbitTargets[i*3]   = ORBIT_R * Math.sin(φ) * Math.cos(θ);
+    orbitTargets[i*3+1] = ORBIT_R * Math.sin(φ) * Math.sin(θ);
+    orbitTargets[i*3+2] = ORBIT_R * Math.cos(φ) * .45;   // flatten Z
+    }
+
+    // ── Per-particle colors ───────────────────────────────────
+    // Palette: white → icy white-blue → light blue → mid blue → deep blue
+    const PALETTE = [
+    new THREE.Color(1.00, 1.00, 1.00),   // pure white
+    new THREE.Color(0.88, 0.94, 1.00),   // icy white-blue
+    new THREE.Color(0.72, 0.88, 1.00),   // light blue
+    new THREE.Color(0.45, 0.68, 1.00),   // bright accent blue
+    new THREE.Color(0.25, 0.48, 0.95),   // mid blue
+    new THREE.Color(0.18, 0.35, 0.85),   // deeper blue
+    ];
+    const colorArr = new Float32Array(TOTAL_P * 3);
+    for (let i = 0; i < TOTAL_P; i++) {
+    const isOrbit = i >= TEXT_P;
+    const roll    = Math.random();
+    let c;
+    if (!isOrbit) {
+        // text particles: weight toward whites & light blues
+        c = roll < .30 ? PALETTE[0]
+        : roll < .58 ? PALETTE[1]
+        : roll < .82 ? PALETTE[2]
+        :               PALETTE[3];
+    } else {
+        // orbit particles: more saturated blues
+        c = roll < .20 ? PALETTE[2]
+        : roll < .55 ? PALETTE[3]
+        : roll < .80 ? PALETTE[4]
+        :               PALETTE[5];
+    }
+    colorArr[i*3]   = c.r;
+    colorArr[i*3+1] = c.g;
+    colorArr[i*3+2] = c.b;
+    }
+
+    // ── Geometry & material ───────────────────────────────────
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('color',    new THREE.BufferAttribute(colorArr,  3));
+
+    const mat = new THREE.PointsMaterial({
+    size: IS_MOBILE ? .18 : .15,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    sizeAttenuation: true,
+    });
+    const points = new THREE.Points(geo, mat);
+    scene.add(points);
+
+    // ── Glass sphere (wireframe icosahedron) ─────────────────
+    // Made from TWO meshes: outer glow ring + inner lines
+    const sphereDetail  = IS_MOBILE ? 2 : 3;
+    const sphereGeoBase = new THREE.IcosahedronGeometry(INIT_R * 1.02, sphereDetail);
+
+    // Outer glow: slightly larger, very faint
+    const sphereOuter = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(INIT_R * 1.12, sphereDetail),
+    new THREE.MeshBasicMaterial({
+        color: 0x6699ff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0,
+    })
+    );
+    scene.add(sphereOuter);
+
+    // Inner lines: glass-blue
+    const sphereInner = new THREE.Mesh(
+    sphereGeoBase,
+    new THREE.MeshBasicMaterial({
+        color: 0x88bbff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0,
+    })
+    );
+    scene.add(sphereInner);
+
+    // Big orbit sphere (visible in Act 4 around NOVLO)
+    const ORBIT_SPHERE_R = ORBIT_R * 1.03;
+    const orbitSphereGeo = new THREE.IcosahedronGeometry(ORBIT_SPHERE_R, IS_MOBILE ? 2 : 3);
+    const orbitSphereOuter = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(ORBIT_SPHERE_R * 1.04, IS_MOBILE ? 2 : 3),
+    new THREE.MeshBasicMaterial({ color: 0x3355cc, wireframe: true, transparent: true, opacity: 0 })
+    );
+    const orbitSphereInner = new THREE.Mesh(
+    orbitSphereGeo,
+    new THREE.MeshBasicMaterial({ color: 0x5577ff, wireframe: true, transparent: true, opacity: 0 })
+    );
+    scene.add(orbitSphereOuter);
+    scene.add(orbitSphereInner);
+
+    // ── Lighting (subtle, for any opaque meshes) ─────────────
+    scene.add(new THREE.AmbientLight(0x080818, 1));
+
+    // ── Timings (seconds) ─────────────────────────────────────
+    const T_ACT1_START    = 0.0;
+    const T_EXPLODE       = 0.35;  // explosion moment
+    const T_EXPLODE_END   = 0.65;  // particles start converging
+    const T_CONVERGE_END  = 1.7;   // particles fully at text positions
+    const T_TEXT_REVEAL   = 1.5;   // CSS text starts fading in
+    const T_SUB_REVEAL    = 1.9;   // subtitle / CTA appear
+    const T_ORBIT_APPEAR  = 1.75;  // orbit sphere fades in
+
+    // ── State ─────────────────────────────────────────────────
+    let phase = 'ACT1';  // ACT1 | EXPLODE | CONVERGE | LOOP
+    const clock = new THREE.Clock();
+
+    // Explosion positions — captured at explosion moment
+    const explodePos = new Float32Array(TOTAL_P * 3);
+
+    // CSS element refs
+    const titleEl = document.getElementById('hero-title');
+    const subEl   = document.getElementById('heroSub');
+
+    // ── Animate ───────────────────────────────────────────────
+    function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    // Smooth pointer
+    ptr.x += (ptr.tx - ptr.x) * .06;
+    ptr.y += (ptr.ty - ptr.y) * .06;
+
+    const pos = geo.attributes.position.array;
+
+    // ════════════════════════════════════════════════════
+    //  ACT 1 — sphere floats, particles tight on surface
+    // ════════════════════════════════════════════════════
+    if (t < T_EXPLODE) {
+        // Fade in particles
+        mat.opacity = Math.min(1, t / 0.5);
+
+        // Small sphere breathes
+        const breathe = 1 + Math.sin(t * 2.2) * 0.04;
+        const wobble  = Math.sin(t * 1.1) * 0.15;
+
+        // Sphere wireframe opacity
+        const sOp = Math.min(0.55, t / 0.6 * 0.55);
+        sphereInner.material.opacity = sOp;
+        sphereOuter.material.opacity = sOp * 0.35;
+        sphereInner.scale.setScalar(breathe);
+        sphereOuter.scale.setScalar(breathe * 1.05);
+        sphereInner.rotation.y = t * 0.3;
+        sphereOuter.rotation.y = -t * 0.2;
+        sphereOuter.rotation.x = t * 0.15;
+
+        // Particles hug sphere surface with gentle drift
+        for (let i = 0; i < TOTAL_P; i++) {
+        const b = i * 3;
+        const θ = phases[i] * 6.28 + t * (0.12 + (i % 7) * 0.01);
+        const φ = phases[i] * 3.14 + t * (0.08 + (i % 5) * 0.007);
+        const r = INIT_R * breathe * (0.95 + Math.sin(t * 2 + phases[i]) * 0.05);
+        pos[b]   = r * Math.sin(φ) * Math.cos(θ);
+        pos[b+1] = r * Math.sin(φ) * Math.sin(θ) + wobble;
+        pos[b+2] = r * Math.cos(φ);
+        }
+
+    // ════════════════════════════════════════════════════
+    //  ACT 2 — EXPLODE
+    // ════════════════════════════════════════════════════
+    } else if (t < T_EXPLODE_END) {
+
+        if (phase !== 'EXPLODE') {
+        phase = 'EXPLODE';
+        // Snapshot current positions as explosion origin
+        for (let i = 0; i < TOTAL_P * 3; i++) explodePos[i] = pos[i];
+        // Fade sphere out
+        }
+
+        const prog = (t - T_EXPLODE) / (T_EXPLODE_END - T_EXPLODE);
+        const ease = easeOutExpo(prog);
+
+        // Sphere vanishes
+        sphereInner.material.opacity = Math.max(0, 0.55 * (1 - prog * 3));
+        sphereOuter.material.opacity = Math.max(0, 0.2  * (1 - prog * 3));
+
+        // Particles fly outward
+        for (let i = 0; i < TOTAL_P; i++) {
+        const b = i * 3;
+        pos[b]   = explodePos[b]   + velocities[b]   * ease * 14;
+        pos[b+1] = explodePos[b+1] + velocities[b+1] * ease * 14;
+        pos[b+2] = explodePos[b+2] + velocities[b+2] * ease * 8;
+        }
+
+        // Flash brightness at explosion peak
+        mat.opacity = 1.0;
+        mat.size    = IS_MOBILE ? (.18 + ease * .12) : (.15 + ease * .10);
+
+    // ════════════════════════════════════════════════════
+    //  ACT 3 — CONVERGE to text
+    // ════════════════════════════════════════════════════
+    } else if (t < T_CONVERGE_END + 0.5) {
+
+        if (phase !== 'CONVERGE') {
+        phase = 'CONVERGE';
+        for (let i = 0; i < TOTAL_P * 3; i++) explodePos[i] = pos[i];
+        }
+
+        const rawProg = Math.min(1, (t - T_EXPLODE_END) / (T_CONVERGE_END - T_EXPLODE_END));
+        const ease    = easeOutCubic(rawProg);
+
+        // Text particles → text positions
+        for (let i = 0; i < TEXT_P; i++) {
+        const b  = i * 3;
+        const tx = textTargets[b],   ty = textTargets[b+1], tz = textTargets[b+2];
+        const ex = explodePos[b],    ey = explodePos[b+1],  ez = explodePos[b+2];
+        // stagger: particles closer to centre arrive first
+        const delay = Math.min(.35, (Math.abs(ex) + Math.abs(ey)) / 30);
+        const p2    = Math.max(0, Math.min(1, (rawProg - delay * .4) / (1 - delay * .4)));
+        const e2    = easeOutCubic(p2);
+        pos[b]   = lerp(ex, tx, e2) + Math.sin(phases[i] * 12 + t * 3) * (1-e2) * .5;
+        pos[b+1] = lerp(ey, ty, e2) + Math.cos(phases[i] * 9  + t * 2) * (1-e2) * .5;
+        pos[b+2] = lerp(ez, tz, e2);
+        }
+
+        // Orbit particles → sphere positions
+        for (let i = 0; i < ORBIT_P; i++) {
+        const b  = (TEXT_P + i) * 3;
+        const ob = i * 3;
+        const tx = orbitTargets[ob],   ty = orbitTargets[ob+1], tz = orbitTargets[ob+2];
+        const ex = explodePos[b],      ey = explodePos[b+1],    ez = explodePos[b+2];
+        const p2 = Math.max(0, Math.min(1, (rawProg - .15) / .85));
+        const e2 = easeOutCubic(p2);
+        pos[b]   = lerp(ex, tx, e2);
+        pos[b+1] = lerp(ey, ty, e2);
+        pos[b+2] = lerp(ez, tz, e2);
+        }
+
+        // Particle size shrinks back to normal as they land
+        mat.size = IS_MOBILE ? lerp(.28, .12, ease) : lerp(.23, .10, ease);
+
+        // CSS text reveal
+        if (t >= T_TEXT_REVEAL && !titleEl.classList.contains('revealed')) {
+        titleEl.classList.add('revealed');
+        }
+        if (t >= T_SUB_REVEAL && !subEl.classList.contains('visible')) {
+        subEl.classList.add('visible');
+        }
+
+        // Orbit sphere fades in
+        if (t >= T_ORBIT_APPEAR) {
+        const op = Math.min(1, (t - T_ORBIT_APPEAR) / 1.2);
+        orbitSphereInner.material.opacity = op * 0.18;
+        orbitSphereOuter.material.opacity = op * 0.07;
+        }
+
+    // ════════════════════════════════════════════════════
+    //  ACT 4 — LOOP state
+    // ════════════════════════════════════════════════════
+    } else {
+
+        if (phase !== 'LOOP') {
+        phase = 'LOOP';
+        // Ensure CSS elements revealed
+        titleEl.classList.add('revealed');
+        subEl.classList.add('visible');
+        }
+
+        // ── Text particles: hold formation + mouse repulsion ──
+        const mouseWorldX = ptr.x * 12;
+        const mouseWorldY = ptr.y * 7;
+        const REPEL_R   = 2.8;
+        const REPEL_STR = 2.2;
+
+        for (let i = 0; i < TEXT_P; i++) {
+        const b  = i * 3;
+        const tx = textTargets[b],   ty = textTargets[b+1];
+
+        // Gentle drift while at rest
+        const drift = 0.018;
+        pos[b]   += (tx - pos[b])   * 0.055 + Math.sin(t * .9 + phases[i] * 4) * drift;
+        pos[b+1] += (ty - pos[b+1]) * 0.055 + Math.cos(t * .7 + phases[i] * 3) * drift;
+        pos[b+2] += (textTargets[b+2] - pos[b+2]) * 0.06;
+
+        // Mouse / touch repulsion
+        const dx = pos[b]   - mouseWorldX;
+        const dy = pos[b+1] - mouseWorldY;
+        const d2 = dx*dx + dy*dy;
+        if (d2 < REPEL_R * REPEL_R && d2 > 0.001) {
+            const d    = Math.sqrt(d2);
+            const str  = (REPEL_R - d) / REPEL_R * REPEL_STR;
+            pos[b]   += (dx / d) * str * 0.1;
+            pos[b+1] += (dy / d) * str * 0.1;
+        }
+        }
+
+        // ── Orbit particles: float around the large sphere ──
+        for (let i = 0; i < ORBIT_P; i++) {
+        const b  = (TEXT_P + i) * 3;
+        const ob = i * 3;
+        // Slowly rotate their target position
+        const angle = t * (0.08 + (i % 5) * 0.006) + phases[TEXT_P + i] * Math.PI * 2;
+        const baseX = orbitTargets[ob],   baseY = orbitTargets[ob+1];
+        const r     = Math.sqrt(baseX*baseX + baseY*baseY);
+        const tgtX  = r * Math.cos(angle + Math.atan2(baseY, baseX));
+        const tgtY  = r * Math.sin(angle + Math.atan2(baseY, baseX));
+        pos[b]   += (tgtX - pos[b])   * 0.018;
+        pos[b+1] += (tgtY - pos[b+1]) * 0.018;
+        pos[b+2] += (orbitTargets[ob+2] + Math.sin(t * .4 + phases[i] * 6) * 0.4 - pos[b+2]) * 0.02;
+
+        // Mouse repulsion (weaker for orbit)
+        const mx = ptr.x * 12, my = ptr.y * 7;
+        const dx = pos[b] - mx, dy = pos[b+1] - my;
+        const d2 = dx*dx + dy*dy;
+        if (d2 < 16 && d2 > .01) {
+            const d = Math.sqrt(d2);
+            pos[b]   += (dx/d) * (4-d)/4 * 0.15;
+            pos[b+1] += (dy/d) * (4-d)/4 * 0.15;
+        }
+        }
+
+        // Orbit sphere slow rotation
+        orbitSphereInner.rotation.y = t * 0.06;
+        orbitSphereInner.rotation.x = t * 0.04;
+        orbitSphereOuter.rotation.y = -t * 0.04;
+        orbitSphereOuter.rotation.z = t * 0.03;
+        orbitSphereInner.material.opacity = 0.18;
+        orbitSphereOuter.material.opacity = 0.07;
+
+        // Camera subtle parallax
+        camera.position.x += (ptr.x * 2.5 - camera.position.x) * .025;
+        camera.position.y += (ptr.y * 1.5 - camera.position.y) * .025;
+        camera.lookAt(0, 0, 0);
+    }
+
+    geo.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+    }
+
+    // ── Resize ────────────────────────────────────────────────
+    window.addEventListener('resize', () => {
+    renderer.setSize(innerWidth, innerHeight);
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    });
+
+    animate();
 }

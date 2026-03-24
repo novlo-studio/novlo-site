@@ -43,10 +43,11 @@
             "url": "https://novlo.studio"
         },
         "areaServed": { "@type": "Country", "name": "Canada" },
-        "description": "Affordable web design packages for Canadian small businesses. Starter, Business, and Immersive tiers available.",
+        "description": "Website design packages for Canadian small businesses, including Starter, Business, and Immersive options.",
         "offers": [
             {
             "@type": "Offer",
+            "url": "https://novlo.studio/services.html#starter",
             "name": "Starter",
             "price": "699",
             "priceCurrency": "CAD",
@@ -54,6 +55,7 @@
             },
             {
             "@type": "Offer",
+            "url": "https://novlo.studio/services.html#business",
             "name": "Business",
             "price": "2500",
             "priceCurrency": "CAD",
@@ -61,6 +63,7 @@
             },
             {
             "@type": "Offer",
+            "url": "https://novlo.studio/services.html#immersive",
             "name": "Immersive",
             "price": "4000",
             "priceCurrency": "CAD",
@@ -73,22 +76,21 @@
 <body>
     <!-- Navigation - Dynamically Loaded -->
     <nav class="nav" id="nav">
-        <div class="container nav-container">
-            <a href="/" class="logo">NOVLO</a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="/" data-nav="home">Home</a></li>
-                <li><a href="/services.html" data-nav="services">Services</a></li>
-                <li><a href="/styles.html" data-nav="styles">Styles</a></li>
-                <li><a href="/seo-optimization.html" data-nav="seo-optimization">SEO & Growth Optimization</a></li>
-                <li><a href="/ai-visuals.html" data-nav="ai-visuals">AI Visuals</a></li>
-                <li><a href="/insights.html" data-nav="insights">Insights</a></li>
-                <li><a href="/contact.html" class="nav-cta" data-nav="contact">Contact</a></li>
-            </ul>
-        </div>
+        <a href="/" class="nav-logo">NOVLO</a>
+        <ul class="nav-links" id="navMenu">
+            <li><a href="/" data-nav="home">Home</a></li>
+            <li><a href="/services.html" data-nav="services">Services</a></li>
+            <li><a href="/styles.html" data-nav="styles">Styles</a></li>
+            <li><a href="/seo-optimization.html" data-nav="seo-optimization">SEO & Growth Optimization</a></li>
+            <li><a href="/ai-visuals.html" data-nav="ai-visuals">AI Visuals</a></li>
+            <li><a href="/insights.html" data-nav="insights">Insights</a></li>
+        </ul>
+        <a href="/contact.html" class="nav-cta" data-nav="contact">Contact</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="메뉴">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
     <!-- Hero -->
