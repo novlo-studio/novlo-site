@@ -138,7 +138,7 @@ function initScrollEffects() {
     
     // Observe elements
     setTimeout(() => {
-        document.querySelectorAll('.process-card, .diff-card, .service-card, .blog-card').forEach(el => {
+        document.querySelectorAll('.pstep, .diff-card, .service-card, .blog-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -149,7 +149,7 @@ function initScrollEffects() {
 
 // Process Accordion
 function initProcessAccordion() {
-    const cards = document.querySelectorAll('.process-card');
+    const cards = document.querySelectorAll('.pstep');
     
     if (cards.length > 0) {
         cards[0].classList.add('active');

@@ -242,33 +242,59 @@
     <div data-include="includes/cta-section.html"></div>
 
     <!-- Footer - Dynamically Loaded -->
-    <footer class="footer">
+    <footer class="footer-v2">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo"><img src="/images/novlo-logo.png" alt="NOVLO website design and SEO studio logo" width="80" height="80"></span>
-                    <p>Thoughtful digital experiences by T. Kim.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="/index.html">Home</a>
-                    <a href="/services.html">Services</a>
-                    <a href="/styles.html">Styles</a>
-                    <a href="/seo-optimization.html">SEO & Growth Optimization</a>
-                    <a href="/ai-visuals.html">AI Visuals</a>
-                    <a href="/insights.html">Insights</a>
-                    <a href="/contact.html">Contact</a>
-                </div>
-                
+
+            <div class="footer-v2-content">
+
+            <!-- Brand -->
+            <div class="footer-v2-brand">
+                <a href="/" class="footer-v2-logo">
+                <img src="/images/novlo-logo.png" alt="NOVLO" width="64" height="64">
+                </a>
+                <p class="footer-v2-tagline">Thoughtful digital experiences by T. Kim.<br>Vancouver, BC.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 NOVLO. Made by T. Kim.</p>
-                <a href="#" id="email-footer" class="footer-icon" aria-label="Email">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon-mail">
-                        <path class="mail-body" d="M4 6h16v12H4z"></path>
-                        <path class="mail-flap" d="M22 6l-10 7L2 6"></path>
-                    </svg>
+
+            <!-- Nav links -->
+            <div class="footer-v2-nav">
+                <span class="footer-v2-nav-label">Pages</span>
+                <nav class="footer-v2-links">
+                <a href="/index.html">Home</a>
+                <a href="/services.html">Services</a>
+                <a href="/styles.html">Styles</a>
+                <a href="/seo-optimization.html">SEO & Growth</a>
+                <a href="/ai-visuals.html">AI Visuals</a>
+                <a href="/insights.html">Insights</a>
+                <a href="/contact.html">Contact</a>
+                </nav>
+            </div>
+
+            <!-- CTA column -->
+            <div class="footer-v2-cta">
+                <span class="footer-v2-cta-label">Get in Touch</span>
+                <p class="footer-v2-cta-text">Ready to start? Have questions? I respond within one business day.</p>
+                <a href="/contact.html" class="btn btn-primary"
+                onclick="typeof gtag!=='undefined'&&gtag('event','click_cta',{cta:'start_project',location:'Footer'});">
+                Start a Project
                 </a>
             </div>
+
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="footer-v2-bottom">
+            <span>&copy; 2026 NOVLO. Made by T. Kim.</span>
+            <div class="footer-v2-bottom-right">
+                <a href="/contact.html">contact</a>
+                <a href="#" id="email-footer" class="footer-email-btn" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 6h16v12H4z"></path>
+                    <path d="M22 6l-10 7L2 6"></path>
+                </svg>
+                </a>
+            </div>
+            </div>
+
         </div>
     </footer>
 
