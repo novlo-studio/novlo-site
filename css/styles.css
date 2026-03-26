@@ -597,6 +597,9 @@ body.nav-open {
 .hero-content .btn {
     margin-top: .5rem;
 }
+.hero-content .btn-secondary {
+    margin-left: 1rem;
+}
 .hero-scroll {
   position: absolute;
   bottom: 36px;
@@ -4284,6 +4287,130 @@ blockquote {
 
 .article-nav-links a {
     font-weight: 600;
+}
+
+/* ========================================
+   DEMO INDEX PAGE
+   ======================================== */
+
+.demo-hero .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.demo-hero .hero-trust {
+    margin-top: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.demo-gallery {
+    padding: 4rem 0;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.demo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.demo-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.demo-card-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg-secondary);
+}
+
+.demo-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.demo-card:hover .demo-card-image img {
+    transform: scale(1.04);
+}
+
+.demo-card-content {
+    padding: 1.75rem;
+}
+
+.demo-card-content h3 {
+    margin-bottom: 0.75rem;
+}
+
+.demo-card-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.demo-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+}
+
+.demo-notes {
+    background: var(--bg-secondary);
+}
+
+.demo-note-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.demo-note-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.demo-note-item h4 {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.demo-note-item p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .demo-grid,
+    .demo-note-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-card-actions {
+        flex-direction: column;
+    }
+
+    .demo-card-actions .btn {
+        width: 100%;
+    }
 }
 
 /* Responsive */
