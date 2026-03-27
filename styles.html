@@ -63,7 +63,7 @@
                 event_category: 'engagement',
                 event_label: 'get_quote_style'
                 });">Get a Quote</a>
-                <a href="/demo/index.html" class="btn btn-secondary btn-large">Browse Demo</a>
+                <a href="/demo/index.html" target="_blank" class="btn btn-secondary btn-large">Browse Demo</a>
                 <a href="/services.html#starter" class="btn btn-secondary btn-large">See Pricing</a>
             </div>
             
@@ -201,13 +201,16 @@
                         <p class="detail-note">
                         This style is based on a real demo layout. Preview it before starting.
                         </p>
-                        <a href="/demo/demo-beauty.html" class="btn btn-secondary">
+                        <a href="/demo/demo-beauty.html" target="_blank" class="btn btn-secondary" onclick="gtag('event', 'click_cta', {
+                        cta: 'view_demo_warm',
+                        location: 'style'
+                        });">
                             See This Style in Action
                         </a>
 
                         <a href="/contact.html?type=web-design&style=warm-neutral" class="btn btn-primary" 
                         onclick="gtag('event', 'click_cta', {
-                        cta: 'Warm_neutral',
+                        cta: 'choose_style_warm',
                         location: 'style'
                         });">Choose this style</a>
                     </div>
@@ -243,13 +246,16 @@
                         <p class="detail-note">
                         This style is based on a real demo layout. Preview it before starting.
                         </p>
-                        <a href="/demo/demo-beauty.html" class="btn btn-secondary">
+                        <a href="/demo/demo-botanic.html" target="_blank"  class="btn btn-secondary" onclick="gtag('event', 'click_cta', {
+                        cta: 'view_demo_botanic',
+                        location: 'style'
+                        });">
                             See This Style in Action
                         </a>
 
                         <a href="/contact.html?type=web-design&style=botanic-natural" class="btn btn-primary"
                         onclick="gtag('event', 'click_cta', {
-                        cta: 'botanic_natural',
+                        cta: 'choose_style_botanic',
                         location: 'style'
                         });">Choose this style</a>
                     </div>
@@ -284,11 +290,14 @@
 
                     <div class="detail-cta-group">
                         <p class="detail-note">This style is based on a real demo layout. Preview it before starting.</p>
-                        <a href="/demo/demo-clean.html" class="btn btn-secondary">See This Style in Action</a>
+                        <a href="/demo/demo-minimal.html" target="_blank" class="btn btn-secondary" onclick="gtag('event', 'click_cta', {
+                        cta: 'view_demo_minimal',
+                        location: 'style'
+                        });">See This Style in Action</a>
 
                         <a href="/contact.html?type=web-design&style=minimal-editorial" class="btn btn-primary" 
                         onclick="gtag('event', 'click_cta', {
-                        cta: 'minimal_editorial',
+                        cta: 'choose_style_minimal',
                         location: 'style'
                         });">Choose this style</a>
                     </div>
@@ -321,10 +330,13 @@
 
                     <div class="detail-cta-group">
                         <p class="detail-note">This style is based on a real demo layout. Preview it before starting.</p>
-                        <a href="/demo/demo-bold.html" class="btn btn-secondary">See This Style in Action</a>
+                        <a href="/demo/demo-bold.html" target="_blank"  class="btn btn-secondary" onclick="gtag('event', 'click_cta', {
+                        cta: 'view_demo_bold',
+                        location: 'style'
+                        });">See This Style in Action</a>
                         <a href="/contact.html?type=web-design&style=bold-modern" class="btn btn-primary" 
                         onclick="gtag('event', 'click_cta', {
-                        cta: 'bold_modern',
+                        cta: 'choose_style_bold',
                         location: 'style'
                         });">Choose this style</a>
                     </div>
@@ -357,10 +369,10 @@
 
                     <div class="detail-cta-group">
                         <p class="detail-note">This style is based on a real demo layout. Preview it before starting.</p>
-                        <a href="/demo/demo-builder.html" class="btn btn-secondary">See This Style in Action</a>
+                        <a href="/demo/demo-builder.html" target="_blank"  class="btn btn-secondary" onclick="typeof gtag!=='undefined'&&gtag('event','click_cta',{cta:'view_demo_structured',location:'style'});">See This Style in Action</a>
                         <a href="/contact.html?type=web-design&style=structured-professional" class="btn btn-primary" 
                         onclick="gtag('event', 'click_cta', {
-                        cta: 'structured_professional',
+                        cta: 'choose_style_structured',
                         location: 'style'
                         });">Choose this style</a>
                     </div>                    
