@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE ANCHOR — Established 1987</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0806;
+    --charcoal: #111009;
+    --deep: #1a1610;
+    --ember: #c8410a;
+    --amber: #d97706;
+    --gold: #f59e0b;
+    --cream: #f5edd6;
+    --ash: #8a7d6b;
+    --white: #faf7f2;
+    --red: #9b1c1c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    mix-blend-mode: normal;
+    background: linear-gradient(to bottom, rgba(10,8,6,0.95) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(10,8,6,0.35) 0%, rgba(10,8,6,0.1) 30%, rgba(10,8,6,0.7) 70%, var(--black) 100%),
+      url('img/demo-bold-hero.jpg') center/cover no-repeat;
+    filter: contrast(1.1) saturate(0.4);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(200,65,10,0.18) 0%, transparent 65%);
+  }
+
+  /* grain texture overlay */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 120px 60px 100px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: var(--ember);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 12vw, 120px);
+    line-height: 0.82;
+    letter-spacing: 0.01em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .hero-headline span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ash);
+    max-width: 400px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .btn-primary {
+    background: var(--ember);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
+
+  .btn-primary:hover {
+    background: var(--amber);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ash);
+    padding-bottom: 4px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* hero rating badge */
+  .hero-badge {
+    position: absolute;
+    right: 60px;
+    bottom: 100px;
+    z-index: 2;
+    text-align: right;
+  }
+
+  .badge-stars {
+    font-size: 20px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .badge-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--ember);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 14px 0;
+  }
+
+  .ticker {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+  }
+
+  .ticker span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    padding: 0 48px;
+  }
+
+  .ticker span::after {
+    content: '◆';
+    color: rgba(255,255,255,0.4);
+    margin-left: 48px;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 120px 60px; }
+
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--ember);
+  }
+
+  /* ── BRAND STORY ── */
+  #story { background: var(--charcoal); }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .story-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+
+  .story-headline em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .story-body {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #c4b49a;
+    margin-bottom: 24px;
+  }
+
+  .story-stat {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 40px;
+  }
+
+  .stat-item { padding-right: 24px; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  .story-image-wrap {
+    position: relative;
+  }
+
+  .story-image-wrap img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.05) saturate(0.7);
+  }
+
+  .story-image-wrap::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px;
+    right: 20px; bottom: 20px;
+    border: 1px solid var(--ember);
+    z-index: 0;
+  }
+
+  .story-image-wrap img { position: relative; z-index: 1; }
+
+  .story-tag {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--ember);
+    padding: 20px 28px;
+    z-index: 2;
+  }
+
+  .story-tag span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+  }
+
+  .story-tag small {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ── TESTIMONIAL STRIP ── */
+  .testimonial-strip {
+    background: var(--deep);
+    padding: 60px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .testimonials-grid {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .testimonial-item {
+    padding: 32px;
+    border-left: 2px solid var(--ember);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .t-quote {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--cream);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .t-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 10px; }
+
+  .t-author {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  /* ── MENU ── */
+  #menu { background: var(--black); }
+
+  .menu-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 60px;
+  }
+
+  .menu-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    color: var(--white);
+  }
+
+  .menu-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.04);
+    padding: 4px;
+  }
+
+  .tab-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    background: transparent;
+    border: none;
+    color: var(--ash);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active {
+    background: var(--ember);
+    color: var(--white);
+  }
+
+  .tab-btn:hover:not(.active) { color: var(--cream); }
+
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  .menu-category-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 56px;
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    gap: 20px;
+  }
+
+  .menu-item:nth-child(odd) { padding-right: 40px; }
+  .menu-item:nth-child(even) { padding-left: 40px; border-left: 1px solid rgba(255,255,255,0.05); }
+
+  .item-info { flex: 1; }
+
+  .item-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.03em;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .item-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ash);
+    line-height: 1.4;
+  }
+
+  .item-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--charcoal); padding-bottom: 80px; }
+
+  .gallery-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 48px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.6) contrast(1.05);
+    transition: transform 0.4s ease, filter 0.4s ease;
+    aspect-ratio: 1;
+  }
+
+  .gallery-item:first-child img { aspect-ratio: auto; min-height: 400px; }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,65,10,0.4) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.04);
+    filter: saturate(1) contrast(1.05);
+  }
+
+  .gallery-item:hover::after { opacity: 1; }
+
+  /* ── LOCATION ── */
+  #location {
+    background: var(--deep);
+    border-top: 3px solid var(--ember);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .location-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 48px;
+  }
+
+  .location-headline em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .info-block { margin-bottom: 40px; }
+
+  .info-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 10px;
+  }
+
+  .info-text {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 32px;
+  }
+
+  .hours-day {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: var(--ash);
+  }
+
+  .hours-time {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--cream);
+  }
+
+  .map-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background:
+      linear-gradient(rgba(10,8,6,0.6), rgba(10,8,6,0.6)),
+      url('img/demo-bold-location.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px);
+  }
+
+  .map-pin {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .map-pin-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--ember);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-pin-icon::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    border-radius: 50%;
+    transform: rotate(45deg);
+    display: block;
+  }
+
+  .map-pin-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.1em;
+    color: var(--white);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 60px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+
+  .footer-logo small {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-top: 2px;
+  }
+
+  .footer-copy {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    text-align: right;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 20px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ash);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .social-link:hover {
+    border-color: var(--ember);
+    color: var(--ember);
+    background: rgba(200,65,10,0.08);
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  /* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+  nav {
+    padding: 20px 32px;
+  }
+
+  .nav-links {
+    gap: 24px;
+  }
+
+  #hero {
+    min-height: 760px;
+    align-items: center;
+  }
+
+  .hero-content {
+    padding: 120px 32px 72px;
+  }
+
+  .hero-headline {
+    font-size: clamp(72px, 13vw, 120px);
+    line-height: 0.92;
+  }
+
+  .hero-sub {
+    max-width: 480px;
+    font-size: 17px;
+  }
+
+  .hero-badge {
+    right: 32px;
+    bottom: 48px;
+  }
+
+  .story-grid,
+  .menu-grid,
+  .gallery-grid,
+  .location-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-image-wrap,
+  .location-map,
+  .location-info {
+    width: 100%;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+  nav {
+    padding: 18px 20px;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-size: 24px;
+    letter-spacing: 0.1em;
+  }
+
+  /* 일단 모바일에서는 메뉴 숨김 */
+  .nav-links {
+    display: none;
+  }
+  section {
+    padding: 40px 20px;
+  }
+
+  #hero {
+    min-height: auto;
+    height: auto;
+    padding-top: 88px;
+    padding-bottom: 40px;
+    align-items: center;
+  }
+
+  .hero-bg {
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(10,8,6,0.48) 0%,
+        rgba(10,8,6,0.24) 24%,
+        rgba(10,8,6,0.72) 72%,
+        rgba(10,8,6,0.96) 100%
+      ),
+      url('img/demo-bold-hero.jpg') 62% center / cover no-repeat;
+  }
+
+  .hero-content {
+    padding: 32px 20px 24px;
+    max-width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .hero-eyebrow::before {
+    width: 26px;
+  }
+
+  .hero-headline {
+    font-size: clamp(54px, 18vw, 84px);
+    line-height: 0.9;
+    margin-bottom: 18px;
+    max-width: 100%;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 320px;
+    margin-bottom: 28px;
+    color: rgba(245, 237, 214, 0.82);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .btn-primary {
+    padding: 16px 24px;
+    font-size: 13px;
+  }
+
+  .btn-ghost {
+    padding-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .hero-badge {
+    position: static;
+    padding: 0 20px;
+    margin-top: 12px;
+    text-align: left;
+  }
+
+  .badge-stars {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .badge-text {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+  }
+
+  .ticker-wrap {
+    padding: 10px 0;
+  }
+
+  .ticker span {
+    font-size: 18px;
+    padding: 0 28px;
+  }
+
+  #story,
+  #menu,
+  #gallery,
+  #location,
+  footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .story-headline,
+  .section-title,
+  .menu-title,
+  .location-title {
+    font-size: clamp(36px, 10vw, 54px);
+    line-height: 0.95;
+  }
+  .menu-header {
+    flex-direction: column;
+  }
+
+  .menu-item:nth-child(even){
+    padding-left: 0;
+    padding-right: 40px;
+  }
+
+  .story-body,
+  .menu-desc,
+  .location-copy,
+  .footer-copy {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .testimonials-grid {
+    display: block;
+  }
+
+  .story-stat {
+    /* grid-template-columns: 1fr; */
+    gap: 16px;
+  }
+
+  .stat-item {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(245, 237, 214, 0.12);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .menu-card {
+    padding: 22px 18px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .gallery-item img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .location-map iframe,
+  .location-map img {
+    min-height: 300px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+@media (max-width: 480px) {
+  nav {
+    padding: 16px 16px;
+  }
+
+  .nav-logo {
+    font-size: 22px;
+  }
+
+  #hero {
+    padding-top: 84px;
+    padding-bottom: 32px;
+  }
+
+  .hero-content {
+    padding: 20px 16px 20px;
+  }
+
+  .hero-headline {
+    font-size: clamp(46px, 17vw, 68px);
+    line-height: 0.92;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    padding: 0 16px;
+  }
+
+  .ticker span {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+
+  #story,
+  #menu,
+  #gallery,
+  #location,
+  footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .story-headline,
+  .section-title,
+  .menu-title,
+  .location-title {
+    font-size: clamp(30px, 11vw, 42px);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">THE ANCHOR</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#location">Find Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. 1987 · Neighbourhood Icon</p>
+    <h1 class="hero-headline">
+      Where Every<br>
+      <span>Night Hits</span>
+      Different.
+    </h1>
+    <p class="hero-sub">Cold pints. Hot food. Zero pretence. The Anchor is your corner of the city — loud, warm, and unapologetically real.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">View Menu</a>
+      <a href="#location" class="btn-ghost">Find Us Tonight →</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <span class="badge-stars">★★★★★</span>
+    <p class="badge-text">4.9 · 2,400+ Reviews</p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>Craft Beers on Tap</span>
+    <span>Live Music Fridays</span>
+    <span>Kitchen Until Midnight</span>
+    <span>Sunday Roast</span>
+    <span>Happy Hour 4–7PM</span>
+    <span>Craft Beers on Tap</span>
+    <span>Live Music Fridays</span>
+    <span>Kitchen Until Midnight</span>
+    <span>Sunday Roast</span>
+    <span>Happy Hour 4–7PM</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div>
+        <p class="section-label reveal">Our Story</p>
+        <h2 class="story-headline reveal reveal-delay-1">
+          Built On<br><em>Good Times</em><br>& Bad Decisions.
+        </h2>
+        <p class="story-body reveal reveal-delay-2">
+          The Anchor has stood on this corner for over three decades. Not because we chased trends — but because we never had to. From the first pint to the last call, we've been the place locals come back to.
+        </p>
+        <p class="story-body reveal reveal-delay-2">
+          We believe a great pub isn't designed — it's earned. Rough edges, regulars who know your name, and a kitchen that doesn't quit when you need it most.
+        </p>
+
+        <div class="story-stat reveal reveal-delay-3">
+          <div class="stat-item">
+            <div class="stat-num">37+</div>
+            <div class="stat-label">Years Open</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">22</div>
+            <div class="stat-label">Beers on Tap</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Spot Like This</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-image-wrap reveal reveal-delay-2">
+        <img src="img/demo-bold-story.jpg" alt="Inside The Anchor">
+        <div class="story-tag">
+          <span>№1</span>
+          <small>Local Favourite</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL STRIP -->
+<div class="testimonial-strip">
+  <div class="testimonials-grid">
+    <div class="testimonial-item reveal">
+      <p class="t-stars">★★★★★</p>
+      <p class="t-quote">"Best pub in the city. Full stop. Don't let the lack of Instagram filter fool you — this place has more soul than anywhere else."</p>
+      <p class="t-author">— Jamie H., Google Reviews</p>
+    </div>
+    <div class="testimonial-item reveal reveal-delay-1">
+      <p class="t-stars">★★★★★</p>
+      <p class="t-quote">"The Sunday roast hit different after a rough week. Felt like home the second I walked in. Been coming every week since."</p>
+      <p class="t-author">— Priya M., Yelp</p>
+    </div>
+    <div class="testimonial-item reveal reveal-delay-2">
+      <p class="t-stars">★★★★★</p>
+      <p class="t-quote">"Came for a quick pint, stayed for three hours. That's what The Anchor does to you. Brilliant atmosphere, incredible staff."</p>
+      <p class="t-author">— Marcus O., TripAdvisor</p>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="container">
+    <div class="menu-header">
+      <div>
+        <p class="section-label">The Goods</p>
+        <h2 class="menu-headline">Our Menu</h2>
+      </div>
+      <div class="menu-tabs">
+        <button class="tab-btn active" onclick="switchTab('drinks', this)">Drinks</button>
+        <button class="tab-btn" onclick="switchTab('cocktails', this)">Cocktails</button>
+        <button class="tab-btn" onclick="switchTab('food', this)">Food</button>
+      </div>
+    </div>
+
+    <!-- DRINKS -->
+    <div class="menu-panel active" id="tab-drinks">
+      <h3 class="menu-category-title">On Tap</h3>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-info"><p class="item-name">Anchor Dark</p><p class="item-desc">Our house stout · smooth, roasted, bold</p></div><span class="item-price">$7</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Session IPA</p><p class="item-desc">Citrus-forward · dry-hopped · 4.8%</p></div><span class="item-price">$7</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Golden Lager</p><p class="item-desc">Crisp, clean, refreshing · 4.2%</p></div><span class="item-price">$6</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Red Amber Ale</p><p class="item-desc">Caramel malt · light bitterness</p></div><span class="item-price">$7</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Wheat & Wild</p><p class="item-desc">Unfiltered wheat · coriander finish</p></div><span class="item-price">$7</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Pilsner (Import)</p><p class="item-desc">Czech-style · floral, clean</p></div><span class="item-price">$8</span></div>
+      </div>
+      <h3 class="menu-category-title">Bottles & Cans</h3>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-info"><p class="item-name">Guinness</p><p class="item-desc">The classic · always on</p></div><span class="item-price">$7</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Corona</p><p class="item-desc">Served with lime</p></div><span class="item-price">$6</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Hard Cider</p><p class="item-desc">Local orchard · dry finish</p></div><span class="item-price">$7</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Non-Alc IPA</p><p class="item-desc">All the flavour, zero regret</p></div><span class="item-price">$5</span></div>
+      </div>
+    </div>
+
+    <!-- COCKTAILS -->
+    <div class="menu-panel" id="tab-cocktails">
+      <h3 class="menu-category-title">Signature Cocktails</h3>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-info"><p class="item-name">Anchor Smash</p><p class="item-desc">Bourbon, honey, lemon, fresh thyme</p></div><span class="item-price">$14</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Coal & Copper</p><p class="item-desc">Mezcal, espresso, burnt orange bitters</p></div><span class="item-price">$15</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">The Regular</p><p class="item-desc">Rye whiskey, sweet vermouth, cherry</p></div><span class="item-price">$13</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Fire Lane</p><p class="item-desc">Jalapeño tequila, pineapple, lime, tajín</p></div><span class="item-price">$14</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Nightcap</p><p class="item-desc">Amaretto, cold brew, cream float</p></div><span class="item-price">$13</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Last Call Sour</p><p class="item-desc">Gin, elderflower, lemon, egg white</p></div><span class="item-price">$14</span></div>
+      </div>
+    </div>
+
+    <!-- FOOD -->
+    <div class="menu-panel" id="tab-food">
+      <h3 class="menu-category-title">Starters</h3>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-info"><p class="item-name">Anchor Wings</p><p class="item-desc">12 wings · choice of sauce · celery, blue cheese</p></div><span class="item-price">$17</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Crispy Calamari</p><p class="item-desc">Smoked paprika aioli · charred lemon</p></div><span class="item-price">$15</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Loaded Skins</p><p class="item-desc">Potato skins · bacon, cheddar, sour cream</p></div><span class="item-price">$13</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Poutine</p><p class="item-desc">House fries · gravy · cheese curds</p></div><span class="item-price">$14</span></div>
+      </div>
+      <h3 class="menu-category-title">Mains</h3>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-info"><p class="item-name">The Anchor Burger</p><p class="item-desc">Double smash · white cheddar · secret sauce</p></div><span class="item-price">$21</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Pulled Pork Sandwich</p><p class="item-desc">12hr smoke · coleslaw · pickled jalapeño</p></div><span class="item-price">$20</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Fish & Chips</p><p class="item-desc">Beer battered · tartar · mushy peas</p></div><span class="item-price">$24</span></div>
+        <div class="menu-item"><div class="item-info"><p class="item-name">Sunday Roast</p><p class="item-desc">Sundays only · beef, veg, Yorkshire pudding</p></div><span class="item-price">$26</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-label reveal">The Atmosphere</p>
+    <h2 class="gallery-headline reveal reveal-delay-1">See The<br>Scene.</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="img/demo-bold-scene1.jpg" alt="The Anchor Interior"></div>
+      <div class="gallery-item"><img src="img/demo-bold-scene2.jpg" alt="Bar"></div>
+      <div class="gallery-item"><img src="img/demo-bold-scene3.jpg" alt="Food"></div>
+      <div class="gallery-item"><img src="img/demo-bold-scene4.jpg" alt="Crowd"></div>
+      <div class="gallery-item"><img src="img/demo-bold-scene5.jpg" alt="Pints"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div>
+        <p class="section-label reveal">Come In</p>
+        <h2 class="location-headline reveal reveal-delay-1">
+          You Know<br>Where to<br><em>Find Us.</em>
+        </h2>
+
+        <div class="info-block reveal reveal-delay-2">
+          <p class="info-label">Address</p>
+          <p class="info-text">147 Harbour Street<br>East Village, The City<br>EC1A 4PL</p>
+        </div>
+
+        <div class="info-block reveal reveal-delay-3">
+          <p class="info-label">Opening Hours</p>
+          <div class="hours-grid">
+            <span class="hours-day">Mon – Thu</span><span class="hours-time">12pm – 12am</span>
+            <span class="hours-day">Fri – Sat</span><span class="hours-time">12pm – 2am</span>
+            <span class="hours-day">Sunday</span><span class="hours-time">11am – 11pm</span>
+          </div>
+        </div>
+
+        <div class="info-block reveal reveal-delay-4">
+          <p class="info-label">Reservations</p>
+          <p class="info-text">+1 (604) 555 0187<br>hello@theanchorpub.com</p>
+        </div>
+
+        <a href="#" class="btn-primary" style="margin-top: 16px; display: inline-block;">Get Directions →</a>
+      </div>
+
+      <div class="map-placeholder reveal reveal-delay-2">
+        <div class="map-pin">
+          <div class="map-pin-icon"></div>
+          <p class="map-pin-label">THE ANCHOR</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      THE ANCHOR
+      <small>Established 1987</small>
+    </div>
+    <div class="footer-social">
+      <a class="social-link" href="#">IG</a>
+      <a class="social-link" href="#">FB</a>
+      <a class="social-link" href="#">TW</a>
+    </div>
+    <div class="footer-copy">
+      <p>© 2026 The Anchor Pub</p>
+      <p style="margin-top: 4px;">All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  function switchTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav background on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 60
+      ? 'rgba(10,8,6,0.97)'
+      : 'linear-gradient(to bottom, rgba(10,8,6,0.95) 0%, transparent 100%)';
+  });
+</script>
+</body>
+</html>

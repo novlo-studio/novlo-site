@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdana Botanicals — Handcrafted Wellness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green-deep:    #2d4a35;
+    --green-mid:     #3d6147;
+    --green-light:   #6b8f71;
+    --green-mist:    #b5c9b8;
+    --brown-dark:    #5a3e2b;
+    --brown-mid:     #8b6545;
+    --brown-warm:    #c4a882;
+    --cream:         #f5f0e8;
+    --cream-dark:    #ede5d4;
+    --sand:          #d9cbb5;
+    --charcoal:      #2c2820;
+    --text-body:     #3d3328;
+    --text-light:    #7a6e62;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text-body);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ──────────────── NAV ──────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 60px;
+    background: transparent;
+    transition: background 0.5s, padding 0.5s;
+  }
+  nav.scrolled {
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    padding: 16px 60px;
+    border-bottom: 1px solid var(--sand);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+  }
+  nav.scrolled .nav-logo { color: var(--green-deep); }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav.scrolled .nav-links a { color: var(--text-light); }
+  .nav-links a:hover { color: var(--green-light); }
+
+  /* ──────────────── HERO ──────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(170deg, rgba(29,47,33,0.72) 0%, rgba(61,97,71,0.45) 50%, rgba(90,62,43,0.55) 100%),
+      url('https://picsum.photos/seed/forest22/1600/900') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(20,32,22,0.45) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 720px;
+    padding: 0 40px;
+    animation: heroFade 1.2s ease both;
+  }
+  @keyframes heroFade {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green-mist);
+    margin-bottom: 24px;
+    animation: heroFade 1s 0.2s ease both;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 7vw, 5.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 28px;
+    animation: heroFade 1s 0.35s ease both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--brown-warm);
+  }
+  .hero p {
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.82);
+    max-width: 480px;
+    margin: 0 auto 46px;
+    line-height: 1.75;
+    animation: heroFade 1s 0.5s ease both;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 44px;
+    background: transparent;
+    border: 1.5px solid rgba(245,240,232,0.6);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background 0.35s, border-color 0.35s, color 0.35s;
+    animation: heroFade 1s 0.65s ease both;
+  }
+  .btn-primary:hover {
+    background: var(--green-deep);
+    border-color: var(--green-deep);
+    color: var(--cream);
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(245,240,232,0.5);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    animation: heroFade 1s 1s ease both;
+  }
+  .hero-scroll span {
+    width: 1px;
+    height: 42px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.5), transparent);
+    animation: scrollLine 2s infinite;
+  }
+  @keyframes scrollLine {
+    0%,100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.7); }
+  }
+
+  /* ──────────────── SECTIONS WRAPPER ──────────────── */
+  section { padding: 120px 40px; }
+  .container { max-width: 1060px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--green-deep);
+  }
+  .section-title em { font-style: italic; color: var(--brown-mid); }
+  .divider {
+    width: 48px;
+    height: 1.5px;
+    background: var(--brown-warm);
+    margin: 28px 0;
+  }
+
+  /* ──────────────── BRAND STORY ──────────────── */
+  .story { background: var(--cream); }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .story-text p {
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .story-text p:last-child { margin-bottom: 0; }
+  .story-image {
+    position: relative;
+  }
+  .story-image img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+  }
+  .story-image::before {
+    content: '';
+    position: absolute;
+    top: -18px; left: -18px;
+    right: 18px; bottom: 18px;
+    border: 1.5px solid var(--sand);
+    z-index: 0;
+  }
+  .story-image img { position: relative; z-index: 1; }
+  .story-tag {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    z-index: 2;
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 18px 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* ──────────────── PRODUCTS ──────────────── */
+  .products { background: var(--cream-dark); }
+  .products-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  .products-header .divider { margin: 28px auto; }
+  .products-header p {
+    max-width: 500px;
+    margin: 0 auto;
+    color: var(--text-light);
+    font-size: 0.97rem;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .product-card {
+    background: var(--cream);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(44,40,32,0.12);
+  }
+  .product-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.88);
+    transition: filter 0.4s, transform 0.5s;
+  }
+  .product-card:hover .product-img {
+    filter: saturate(1);
+    transform: scale(1.03);
+  }
+  .product-img-wrap { overflow: hidden; }
+  .product-info {
+    padding: 24px 26px 28px;
+    border-top: 1.5px solid var(--cream-dark);
+  }
+  .product-category {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 8px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .product-desc {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--brown-dark);
+  }
+
+  /* ──────────────── PROCESS ──────────────── */
+  .process { background: var(--green-deep); }
+  .process .section-label { color: var(--green-mist); }
+  .process .section-title { color: var(--cream); }
+  .process .section-title em { color: var(--brown-warm); }
+  .process .divider { background: var(--brown-warm); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 70px;
+    border-top: 1px solid rgba(245,240,232,0.15);
+  }
+  .process-step {
+    padding: 44px 32px 44px 0;
+    border-right: 1px solid rgba(245,240,232,0.15);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; padding-right: 0; }
+  .process-step:not(:first-child) { padding-left: 32px; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.8rem;
+    font-weight: 300;
+    color: rgba(245,240,232,0.12);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .step-icon {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .step-desc {
+    font-size: 0.87rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.7;
+  }
+
+  /* ──────────────── GALLERY ──────────────── */
+  .gallery { background: var(--cream); }
+  .gallery-header { margin-bottom: 56px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+  }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.82);
+    transition: filter 0.5s, transform 0.6s;
+  }
+  .gallery-item:hover img {
+    filter: saturate(1);
+    transform: scale(1.05);
+  }
+
+  /* ──────────────── TESTIMONIAL ──────────────── */
+  .testimonial {
+    background: var(--cream-dark);
+    text-align: center;
+    padding: 100px 40px;
+  }
+  .testimonial blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--green-deep);
+    max-width: 760px;
+    margin: 0 auto 30px;
+    line-height: 1.5;
+  }
+  .testimonial cite {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .testimonial .leaf {
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: 32px;
+    opacity: 0.5;
+  }
+
+  /* ──────────────── CONTACT ──────────────── */
+  .contact { background: var(--cream); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-info p {
+    font-size: 0.97rem;
+    color: var(--text-body);
+    line-height: 1.8;
+    margin-bottom: 10px;
+  }
+  .contact-info strong {
+    font-weight: 500;
+    color: var(--green-deep);
+  }
+  .contact-info .info-block {
+    margin-bottom: 34px;
+    padding-bottom: 34px;
+    border-bottom: 1px solid var(--sand);
+  }
+  .contact-info .info-block:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .info-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 10px;
+  }
+  .contact-map img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.7);
+  }
+  .btn-dark {
+    display: inline-block;
+    padding: 16px 44px;
+    background: var(--green-deep);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: background 0.3s;
+    margin-top: 38px;
+  }
+  .btn-dark:hover { background: var(--green-mid); }
+
+  /* ──────────────── FOOTER ──────────────── */
+  footer {
+    background: var(--charcoal);
+    padding: 56px 40px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    list-style: none;
+    margin-bottom: 30px;
+  }
+  .footer-links a {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--green-mist); }
+  footer p {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 0.06em;
+  }
+
+  /* ──────────────── SCROLL ANIMATIONS ──────────────── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  /* ──────────────── RESPONSIVE ──────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 28px; }
+    nav.scrolled { padding: 14px 28px; }
+    section { padding: 80px 28px; }
+    .story-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .story-image { max-width: 480px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-step { border-right: none; border-bottom: 1px solid rgba(245,240,232,0.15); padding: 36px 0; }
+    .process-step:last-child { border-bottom: none; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 560px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Verdana</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#craft">Craft</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Visit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-label">Small Batch · Botanical · Handcrafted</p>
+    <h1>Rooted in <em>nature,</em><br>made by hand</h1>
+    <p>Pure botanical blends, cold-pressed oils, and handcrafted soaps — made with intention in our small Vancouver studio.</p>
+    <a href="#products" class="btn-primary">Explore Our Products</a>
+  </div>
+  <div class="hero-scroll">
+    <span></span>
+    Scroll
+  </div>
+</section>
+
+<!-- BRAND STORY -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-text fade-up">
+        <p class="section-label">Our Philosophy</p>
+        <h2 class="section-title">Where the <em>forest</em><br>meets the table</h2>
+        <div class="divider"></div>
+        <p>Verdana Botanicals began as a kitchen experiment — a handful of dried herbs, a cold afternoon, and a curiosity about what plants could offer beyond food. That experiment became a practice, and that practice became a craft we share with our community.</p>
+        <p>Everything we make is small-batch, starting with thoughtfully sourced ingredients: local beeswax, organic cold-pressed oils, and dried botanicals from trusted growers in the Pacific Northwest.</p>
+        <p>We believe that slowness is an ingredient. That attention changes the character of what you make. Every bar, every blend, every small tin carries the care of hands that know the difference.</p>
+      </div>
+      <div class="story-image fade-up">
+        <img src="img/demo-botanic-ourStory.avif" alt="Botanical ingredients laid out on a wooden surface">
+        <div class="story-tag">Est. 2018<br>Vancouver, BC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="products-header fade-up">
+      <p class="section-label">Our Offerings</p>
+      <h2 class="section-title">Made with <em>care,</em> held in your hands</h2>
+      <div class="divider"></div>
+      <p>Each product is formulated in small batches to ensure quality, freshness, and the quiet pleasure of something genuinely handmade.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card fade-up">
+        <div class="product-img-wrap">
+          <img class="product-img" src="img/demo-botanic-product1.jpg" alt="Forest Cedarwood Soap">
+        </div>
+        <div class="product-info">
+          <p class="product-category">Cold Process Soap</p>
+          <h3 class="product-name">Forest Cedarwood Bar</h3>
+          <p class="product-desc">Grounding cedarwood and Douglas fir tips in a base of olive and castor oil. Slow-cured for eight weeks.</p>
+          <span class="product-price">$14.00</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-img-wrap">
+          <img class="product-img" src="img/demo-botanic-product2.jpg" alt="Calm Botanical Oil Blend">
+        </div>
+        <div class="product-info">
+          <p class="product-category">Aroma Oil Blend</p>
+          <h3 class="product-name">Still Water Blend</h3>
+          <p class="product-desc">Lavender, vetiver, and clary sage in jojoba — a grounding blend for evening rituals and quiet moments.</p>
+          <span class="product-price">$28.00</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-img-wrap">
+          <img class="product-img" src="img/demo-botanic-product3.jpg" alt="Beeswax Botanical Candle">
+        </div>
+        <div class="product-info">
+          <p class="product-category">Beeswax Candle</p>
+          <h3 class="product-name">Hearthside Taper</h3>
+          <p class="product-desc">Pure local beeswax with dried calendula and rosemary. Burns clean for 40+ hours. Naturally honey-scented.</p>
+          <span class="product-price">$22.00</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-img-wrap">
+          <img class="product-img" src="img/demo-botanic-product4.jpg" alt="Botanical Lip Balm">
+        </div>
+        <div class="product-info">
+          <p class="product-category">Balm & Salve</p>
+          <h3 class="product-name">Meadow Lip Balm</h3>
+          <p class="product-desc">Rose hip oil, shea butter, and a trace of local honey. Soft on the lips, honest in its ingredients.</p>
+          <span class="product-price">$9.00</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-img-wrap">
+          <img class="product-img" src="img/demo-botanic-product5.jpg" alt="Herbal Bath Soak">
+        </div>
+        <div class="product-info">
+          <p class="product-category">Bath & Body</p>
+          <h3 class="product-name">Pine & Salt Soak</h3>
+          <p class="product-desc">Himalayan salt, Pacific fir needles, and mineral-rich magnesium flakes. Made to dissolve the week away.</p>
+          <span class="product-price">$19.00</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-img-wrap">
+          <img class="product-img" src="img/demo-botanic-product6.jpg" alt="Room & Linen Mist">
+        </div>
+        <div class="product-info">
+          <p class="product-category">Room Mist</p>
+          <h3 class="product-name">Morning Birch Mist</h3>
+          <p class="product-desc">Bergamot, birch bark, and green tea distilled into a light, fresh mist for your morning ritual.</p>
+          <span class="product-price">$24.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="craft">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">The Craft</p>
+      <h2 class="section-title">Slow work, <em>done well</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-up">
+        <div class="step-num">01</div>
+        <span class="step-icon">🌿</span>
+        <h3 class="step-title">Source & Select</h3>
+        <p class="step-desc">We gather plants and materials from trusted growers — prioritizing organic, regenerative, and local where possible. Every ingredient earns its place.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">02</div>
+        <span class="step-icon">🧪</span>
+        <h3 class="step-title">Blend & Balance</h3>
+        <p class="step-desc">Formulas are developed slowly, tested across seasons. We adjust for the weather, the batch, the way a particular harvest smells different from the last.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">03</div>
+        <span class="step-icon">🤲</span>
+        <h3 class="step-title">Craft by Hand</h3>
+        <p class="step-desc">Every product is shaped, poured, pressed, or wrapped by hand in our studio. No automated lines. No shortcuts. Just presence and patience.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">04</div>
+        <span class="step-icon">🌾</span>
+        <h3 class="step-title">Cure & Finish</h3>
+        <p class="step-desc">We let things rest. Soaps cure for eight weeks. Balms settle. Blends mature. Rushing is the one ingredient we never add.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header fade-up">
+      <p class="section-label">The Studio</p>
+      <h2 class="section-title">A glimpse into <em>the workshop</em></h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div style="max-width:1060px; margin:0 auto; padding: 0 40px;">
+    <div class="gallery-grid">
+      <div class="gallery-item fade-up">
+        <img src="img/demo-botanic-workshop1.avif" alt="Studio workspace">
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="img/demo-botanic-workshop2.avif" alt="Dried herbs">
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="img/demo-botanic-workshop3.avif" alt="Natural textures">
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="img/demo-botanic-workshop4.avif" alt="Soap pouring">
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="img/demo-botanic-workshop5.avif" alt="Studio window light">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="container fade-up">
+    <span class="leaf">❧</span>
+    <blockquote>"These soaps changed how I think about my morning. There's something in the smell — like stepping into cool air — that just resets everything."</blockquote>
+    <cite>— Miriam T., North Vancouver</cite>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <p class="section-label">Come Find Us</p>
+        <h2 class="section-title">Visit our <em>studio</em></h2>
+        <div class="divider"></div>
+
+        <div class="info-block">
+          <p class="info-label">Location</p>
+          <p><strong>Verdana Botanicals Studio</strong></p>
+          <p>1248 Commercial Drive<br>Vancouver, BC · V5L 3X5</p>
+        </div>
+        <div class="info-block">
+          <p class="info-label">Hours</p>
+          <p><strong>Tuesday – Friday</strong> · 10am – 6pm</p>
+          <p><strong>Saturday</strong> · 10am – 5pm</p>
+          <p><strong>Sunday & Monday</strong> · Closed</p>
+        </div>
+        <div class="info-block">
+          <p class="info-label">Get in Touch</p>
+          <p>hello@verdanabotanicals.ca</p>
+          <p>604 · 555 · 0182</p>
+        </div>
+        <a href="mailto:hello@verdanabotanicals.ca" class="btn-dark">Get in Touch</a>
+      </div>
+      <div class="contact-map fade-up">
+        <img src="img/demo-botanic-studio.jpg" alt="Studio neighbourhood">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Verdana Botanicals</span>
+  <ul class="footer-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#craft">Craft</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p>© 2026 Verdana Botanicals · Vancouver, BC · Made slowly, with love</p>
+</footer>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

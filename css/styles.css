@@ -3253,7 +3253,24 @@ body.nav-open {
     color: var(--text-muted);
     font-size: 0.875rem;
 }
+.detail-cta-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
 
+.detail-note {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.detail-alt-link {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
 /* Style Gallery */
 .style-gallery {
     padding: 4rem 0;

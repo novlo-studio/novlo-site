@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eleanor Vance — Attorney at Law</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f9f8f6;
+    --light: #f0ede8;
+    --ink: #111111;
+    --ink-60: #666666;
+    --ink-30: #bbbbbb;
+    --accent: #2c4a7c;
+    --accent-light: #e8edf5;
+    --rule: #e0ddd8;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --max: 1160px;
+    --pad: clamp(24px, 5vw, 80px);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--white); color: var(--ink); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    height: 68px;
+    display: flex; align-items: center;
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; width: 100%;
+    padding: 0 var(--pad);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
+    color: var(--ink); text-decoration: none; letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a {
+    font-family: var(--sans); font-size: 0.8125rem; font-weight: 400;
+    color: var(--ink-60); text-decoration: none; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink) !important; color: var(--white) !important;
+    padding: 9px 22px; font-size: 0.75rem !important;
+    letter-spacing: 0.08em !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    padding-top: 68px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-text { padding: 80px 0; }
+  .hero-eyebrow {
+    font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.1; letter-spacing: -0.01em;
+    color: var(--ink); margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1.0625rem; color: var(--ink-60); line-height: 1.7;
+    max-width: 420px; margin-bottom: 44px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: var(--white);
+    padding: 14px 32px; font-family: var(--sans);
+    font-size: 0.8125rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost {
+    color: var(--ink); padding: 14px 0;
+    font-family: var(--sans); font-size: 0.8125rem; font-weight: 400;
+    letter-spacing: 0.04em; text-decoration: none;
+    border-bottom: 1px solid var(--ink); transition: color 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 64px;
+    padding-top: 40px; border-top: 1px solid var(--rule);
+  }
+  .stat-num {
+    font-family: var(--serif); font-size: 2.25rem; font-weight: 300;
+    color: var(--ink); line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--ink-60); letter-spacing: 0.04em; margin-top: 4px; }
+  .hero-visual {
+    position: relative; height: 600px; overflow: hidden;
+  }
+  .hero-img-frame {
+    width: 100%; height: 100%;
+    background: var(--off-white);
+    position: relative;
+  }
+  .hero-img-frame img,
+  .article-hero-img-frame img{
+    width: 100%; 
+  }
+
+  .hero-img-frame::after {
+    content: '';
+    position: absolute; bottom: -1px; right: -1px;
+    width: 60%; height: 60%;
+    border-right: 3px solid var(--accent);
+    border-bottom: 3px solid var(--accent);
+  }
+  .hero-photo {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: grayscale(20%);
+  }
+  .hero-badge {
+    position: absolute; bottom: 36px; left: -24px;
+    background: var(--white); border: 1px solid var(--rule);
+    padding: 18px 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+  .hero-badge-text { font-size: 0.75rem; color: var(--ink-60); letter-spacing: 0.04em; }
+  .hero-badge-main { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); margin-top: 2px; }
+
+  /* SECTION WRAPPER */
+  section { padding: 120px var(--pad); }
+  section.alt { background: var(--off-white); }
+  .container { max-width: var(--max); margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; line-height: 1.2; color: var(--ink);
+  }
+  .section-title em { font-style: italic; }
+  .divider { width: 40px; height: 2px; background: var(--accent); margin: 28px 0; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-left { position: sticky; top: 100px; }
+  .about-body { font-size: 1rem; color: var(--ink-60); line-height: 1.8; margin-bottom: 24px; }
+  .about-signature { font-family: var(--serif); font-size: 1.5rem; font-style: italic; color: var(--ink); margin-top: 32px; }
+  .about-sig-title { font-size: 0.75rem; letter-spacing: 0.06em; color: var(--ink-60); margin-top: 4px; }
+  .strengths { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+  .strength-item {
+    padding: 24px 0; border-top: 1px solid var(--rule);
+    display: grid; grid-template-columns: 32px 1fr; gap: 20px;
+    align-items: start;
+  }
+  .strength-item:last-child { border-bottom: 1px solid var(--rule); }
+  .strength-num {
+    font-family: var(--serif); font-size: 1rem; font-weight: 300;
+    color: var(--ink-30); padding-top: 2px;
+  }
+  .strength-title { font-size: 0.9375rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .strength-desc { font-size: 0.875rem; color: var(--ink-60); line-height: 1.65; }
+
+  /* SERVICES */
+  .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 64px; align-items: end; }
+  .services-intro { font-size: 1rem; color: var(--ink-60); line-height: 1.8; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .service-card {
+    background: var(--white); padding: 44px 36px;
+    border: 1px solid var(--rule);
+    transition: border-color 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { border-color: transparent; box-shadow: 0 8px 40px rgba(0,0,0,0.09); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 36px; height: 36px; margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .service-icon svg { width: 24px; height: 24px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+  .service-title { font-family: var(--serif); font-size: 1.375rem; font-weight: 400; color: var(--ink); margin-bottom: 14px; }
+  .service-desc { font-size: 0.875rem; color: var(--ink-60); line-height: 1.75; margin-bottom: 28px; }
+  .service-link {
+    font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+    transition: gap 0.2s;
+  }
+  .service-link:hover { gap: 14px; }
+  .service-link::after { content: '→'; }
+
+  /* BLOG PREVIEW */
+  .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .blog-header-right { text-align: right; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .blog-card {
+    background: var(--white); border: 1px solid var(--rule);
+    transition: box-shadow 0.25s, transform 0.25s;
+    cursor: pointer; text-decoration: none; display: block; color: inherit;
+  }
+  .blog-card:hover { box-shadow: 0 12px 48px rgba(0,0,0,0.09); transform: translateY(-3px); }
+  .blog-card-img {
+    width: 100%; height: 200px;
+    background: var(--light);
+    position: relative; overflow: hidden;
+  }
+  .blog-card-img .placeholder-graphic {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .blog-card-img .placeholder-graphic img {
+    width: 100%;
+  }
+  .blog-card-body { padding: 28px; }
+  .blog-meta { display: flex; gap: 14px; margin-bottom: 14px; align-items: center; }
+  .blog-tag {
+    font-size: 0.675rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; background: var(--accent-light);
+    padding: 3px 10px;
+  }
+  .blog-date { font-size: 0.75rem; color: var(--ink-30); }
+  .blog-title {
+    font-family: var(--serif); font-size: 1.25rem; font-weight: 400;
+    color: var(--ink); line-height: 1.35; margin-bottom: 12px;
+  }
+  .blog-excerpt { font-size: 0.8375rem; color: var(--ink-60); line-height: 1.7; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 100px; align-items: start; }
+  .contact-info { padding-top: 8px; }
+  .contact-info-body { font-size: 1rem; color: var(--ink-60); line-height: 1.8; margin-bottom: 40px; }
+  .contact-details { display: flex; flex-direction: column; gap: 0; }
+  .contact-detail {
+    padding: 20px 0; border-top: 1px solid var(--rule);
+    display: flex; gap: 20px;
+  }
+  .contact-detail:last-child { border-bottom: 1px solid var(--rule); }
+  .contact-detail-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-30); width: 70px; padding-top: 3px; flex-shrink: 0; }
+  .contact-detail-val { font-size: 0.9375rem; color: var(--ink); }
+  .form { display: flex; flex-direction: column; gap: 0; }
+  .form-group { margin-bottom: 0; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .form-field {
+    display: flex; flex-direction: column;
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0;
+  }
+  .form-field:not(:last-child) { border-right: none; }
+  .form-row .form-field:first-child { padding-right: 20px; }
+  .form-row .form-field:last-child { padding-left: 20px; border-left: 1px solid var(--rule); }
+  label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 10px; }
+  input, textarea {
+    background: transparent; border: none; outline: none;
+    font-family: var(--sans); font-size: 0.9375rem; color: var(--ink);
+    resize: none; width: 100%;
+  }
+  input::placeholder, textarea::placeholder { color: var(--ink-30); }
+  textarea { height: 100px; line-height: 1.65; }
+  .form-message { padding: 22px 0; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; }
+  .form-submit { margin-top: 28px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: var(--white);
+    padding: 64px var(--pad);
+  }
+  .footer-inner {
+    max-width: var(--max); margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+  }
+  .footer-brand { }
+  .footer-logo { font-family: var(--serif); font-size: 1.25rem; color: var(--white); margin-bottom: 16px; }
+  .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 240px; }
+  .footer-col-title { font-size: 0.675rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
+  .footer-links { display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a { font-size: 0.875rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: var(--max); margin: 48px auto 0;
+    padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+  .footer-bar-links { display: flex; gap: 28px; }
+  .footer-bar-links a { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * {
+    animation: fadeUp 0.7s ease forwards;
+    opacity: 0;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-actions { animation-delay: 0.4s; }
+  .hero-stats { animation-delay: 0.5s; }
+
+  @media (max-width: 960px) {
+    .nav-inner { gap: 10px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 60px; padding-bottom: 60px; }
+    .nav-logo {    line-height: 1;}
+    .hero-visual { height: 400px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-left { position: static; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .blog-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .services-header { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+
+    .hero-parent {
+      background: linear-gradient(332deg,rgba(96, 147, 235, 0.1) 0%, rgba(153, 188, 247, 0.2) 32%, rgba(255, 255, 255, 1) 100%);
+    }
+    section { padding: 80px var(--pad); }
+    .services-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .blog-header-right { text-align: left; }
+    .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+    .hero-stats { gap: 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-row .form-field:last-child { padding-left: 0; border-left: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="demo-minimal.html" class="nav-logo">Eleanor <span>Vance</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="demo-minimal-blog.html">Insights</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Book Consultation</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:100%; overflow: hidden;" class="hero-parent">
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Attorney at Law · San Francisco</div>
+    <h1>Legal clarity<br>in <em>complex</em><br>matters.</h1>
+    <p class="hero-sub">Strategic counsel for businesses and individuals navigating corporate law, litigation, and real estate transactions with precision and confidence.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Consultation</a>
+      <a href="#services" class="btn-ghost">View Practice Areas</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">18+</div>
+        <div class="stat-label">Years of practice</div>
+      </div>
+      <div>
+        <div class="stat-num">400+</div>
+        <div class="stat-label">Cases resolved</div>
+      </div>
+      <div>
+        <div class="stat-num">97%</div>
+        <div class="stat-label">Client satisfaction</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-frame">
+      <img src="img/demo-minimal-hero.jpg" alt="minimal hero">
+      <div class="hero-badge">
+        <div class="hero-badge-text">State Bar Certified</div>
+        <div class="hero-badge-main">California · New York</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="section-label">About</div>
+        <h2 class="section-title">Counsel you can<br><em>depend on.</em></h2>
+        <div class="divider"></div>
+        <p class="about-body">For nearly two decades, I have represented clients across the full spectrum of business and personal legal matters — from early-stage startup formation to high-stakes commercial litigation.</p>
+        <p class="about-body">My approach is direct. I believe clients deserve honest assessments, not false comfort. I work to understand your goals fully before recommending a course of action, and I communicate clearly at every stage of the process.</p>
+        <div class="about-signature">Eleanor Vance</div>
+        <div class="about-sig-title">J.D. Columbia Law School · Partner, Vance Legal Group</div>
+      </div>
+      <div>
+        <div class="strengths">
+          <div class="strength-item">
+            <div class="strength-num">01</div>
+            <div>
+              <div class="strength-title">Corporate Transactions</div>
+              <div class="strength-desc">Mergers, acquisitions, and complex business deals handled with rigorous due diligence and clear strategic guidance from negotiation to close.</div>
+            </div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-num">02</div>
+            <div>
+              <div class="strength-title">Commercial Litigation</div>
+              <div class="strength-desc">Experienced trial advocate with a record of successful outcomes in federal and state courts across contract disputes, business torts, and injunctive relief.</div>
+            </div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-num">03</div>
+            <div>
+              <div class="strength-title">Real Estate Law</div>
+              <div class="strength-desc">Comprehensive representation in commercial property acquisition, leasing, financing, and development — from term sheet to closing.</div>
+            </div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-num">04</div>
+            <div>
+              <div class="strength-title">Regulatory Compliance</div>
+              <div class="strength-desc">Practical compliance programs and regulatory counsel for businesses operating in complex or highly regulated industries.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-label">Practice Areas</div>
+        <h2 class="section-title">How I can<br><em>help you.</em></h2>
+      </div>
+      <div class="services-intro">
+        Each engagement begins with a thorough consultation. I take time to understand your situation in full before recommending any course of action.
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+        </div>
+        <div class="service-title">Business Formation</div>
+        <div class="service-desc">Entity selection, operating agreements, shareholder structures, and governance frameworks for new ventures and restructurings.</div>
+        <a href="#contact" class="service-link">Inquire</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="service-title">Contract Review</div>
+        <div class="service-desc">Thorough analysis and negotiation of commercial contracts, vendor agreements, NDAs, and licensing arrangements.</div>
+        <a href="#contact" class="service-link">Inquire</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+        </div>
+        <div class="service-title">M&A Advisory</div>
+        <div class="service-desc">Legal counsel for buyers and sellers through the full transaction lifecycle — due diligence, structuring, negotiation, and close.</div>
+        <a href="#contact" class="service-link">Inquire</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+        </div>
+        <div class="service-title">Real Estate</div>
+        <div class="service-desc">Commercial acquisitions, lease negotiation, title review, and financing transactions for investors, developers, and businesses.</div>
+        <a href="#contact" class="service-link">Inquire</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="service-title">Litigation</div>
+        <div class="service-desc">Strategic dispute resolution and courtroom advocacy for commercial disputes, breach of contract, and business tort claims.</div>
+        <a href="#contact" class="service-link">Inquire</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div class="service-title">General Counsel</div>
+        <div class="service-desc">Ongoing outside general counsel services for growing companies that need senior legal guidance without full-time overhead.</div>
+        <a href="#contact" class="service-link">Inquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="alt" id="insights">
+  <div class="container">
+    <div class="blog-header">
+      <div>
+        <div class="section-label">Insights</div>
+        <h2 class="section-title">From the<br><em>practice.</em></h2>
+      </div>
+      <div class="blog-header-right">
+        <a href="demo-minimal-blog.html" class="btn-ghost">View all articles</a>
+      </div>
+    </div>
+    <div class="blog-grid">
+      <a href="demo-minimal-blog-post.html" class="blog-card">
+        <div class="blog-card-img">
+          <div class="placeholder-graphic">
+            <img src="img/demo-minimal-blog1.jpg" alt="blog image">
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-tag">Corporate</span>
+            <span class="blog-date">March 14, 2025</span>
+          </div>
+          <div class="blog-title">What Every Founder Should Know Before Signing a Term Sheet</div>
+          <div class="blog-excerpt">A close reading of the clauses that matter most — and the ones investors are hoping you overlook.</div>
+        </div>
+      </a>
+      <a href="demo-minimal-blog-post.html" class="blog-card">
+        <div class="blog-card-img">
+          <div class="placeholder-graphic">
+            <img src="img/demo-minimal-blog2.jpg" alt="blog image">
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-tag">Litigation</span>
+            <span class="blog-date">February 28, 2025</span>
+          </div>
+          <div class="blog-title">The Anatomy of a Commercial Dispute: A Step-by-Step Overview</div>
+          <div class="blog-excerpt">From demand letter to verdict — understanding the litigation process helps clients make better decisions at every stage.</div>
+        </div>
+      </a>
+      <a href="demo-minimal-blog-post.html" class="blog-card">
+        <div class="blog-card-img">
+          <div class="placeholder-graphic">
+            <img src="img/demo-minimal-blog3.jpg" alt="blog image">
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-tag">Real Estate</span>
+            <span class="blog-date">January 19, 2025</span>
+          </div>
+          <div class="blog-title">Commercial Lease Red Flags: Five Clauses to Negotiate</div>
+          <div class="blog-excerpt">Most tenants focus on rent and term length. Here are the less obvious provisions that create the most risk.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Begin your<br><em>consultation.</em></h2>
+        <div class="divider"></div>
+        <p class="contact-info-body">Initial consultations are available by appointment. I typically respond to all inquiries within one business day.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <span class="contact-detail-label">Office</span>
+            <span class="contact-detail-val">580 California Street, Suite 1200<br>San Francisco, CA 94104</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Phone</span>
+            <span class="contact-detail-val">+1 (415) 555-0192</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-val">e.vance@vancelegal.com</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Hours</span>
+            <span class="contact-detail-val">Mon–Fri, 9:00 AM – 6:00 PM</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="form">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Name</label>
+              <input type="text" placeholder="Your full name">
+            </div>
+            <div class="form-field">
+              <label>Email</label>
+              <input type="email" placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-field form-message" style="border-top: 1px solid var(--rule);">
+            <label>Matter / Message</label>
+            <textarea placeholder="Briefly describe your legal matter or question…"></textarea>
+          </div>
+          <div class="form-submit">
+            <button class="btn-primary" style="cursor:pointer; border:none; width:100%; text-align:center; padding: 16px 32px; font-size: 0.8125rem; letter-spacing: 0.08em;">Send Message</button>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--ink-30); margin-top: 16px; line-height: 1.6;">This form does not establish an attorney-client relationship. Confidential matters should be discussed by phone or in person.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Eleanor Vance</div>
+      <div class="footer-tagline">Strategic legal counsel for business and individuals in California and New York.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Practice</div>
+      <div class="footer-links">
+        <a href="#services">Business Formation</a>
+        <a href="#services">Contract Review</a>
+        <a href="#services">Litigation</a>
+        <a href="#services">Real Estate</a>
+        <a href="#services">M&A Advisory</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="demo-minimal-blog.html">Insights</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact">Book Consultation</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Office</div>
+      <div class="footer-links">
+        <a href="#">580 California Street</a>
+        <a href="#">Suite 1200</a>
+        <a href="#">San Francisco, CA 94104</a>
+        <a href="#">+1 (415) 555-0192</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Vance Legal Group. All rights reserved.</div>
+    <div class="footer-bar-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Attorney Advertising</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

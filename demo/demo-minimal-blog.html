@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights — Eleanor Vance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #ffffff; --off-white: #f9f8f6; --light: #f0ede8;
+    --ink: #111111; --ink-60: #666666; --ink-30: #bbbbbb;
+    --accent: #2c4a7c; --accent-light: #e8edf5; --rule: #e0ddd8;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --max: 1160px; --pad: clamp(24px, 5vw, 80px);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--white); color: var(--ink); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule); height: 68px;
+    display: flex; align-items: center;
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; width: 100%;
+    padding: 0 var(--pad); display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a { font-size: 0.8125rem; font-weight: 400; color: var(--ink-60); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-cta { background: var(--ink) !important; color: var(--white) !important; padding: 9px 22px; font-size: 0.75rem !important; letter-spacing: 0.08em !important; }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding-top: 68px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-header-inner {
+    max-width: var(--max); margin: 0 auto;
+    padding: 80px var(--pad) 64px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end;
+  }
+  .page-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .page-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .page-header h1 { font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 3.75rem); font-weight: 300; line-height: 1.1; color: var(--ink); }
+  .page-header h1 em { font-style: italic; }
+  .page-header-desc { font-size: 1rem; color: var(--ink-60); line-height: 1.8; max-width: 380px; }
+
+  /* FILTER BAR */
+  .filter-bar {
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+    position: sticky; top: 68px; z-index: 50;
+  }
+  .filter-bar-inner {
+    max-width: var(--max); margin: 0 auto;
+    padding: 0 var(--pad);
+    display: flex; gap: 0; align-items: center;
+    overflow-x: auto;
+  }
+  .filter-btn {
+    font-family: var(--sans); font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-30); background: none; border: none;
+    padding: 18px 20px; cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { color: var(--ink); }
+  .filter-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ARTICLES LIST */
+  .articles-section { padding: 72px var(--pad); }
+  .articles-inner { max-width: var(--max); margin: 0 auto; }
+
+  /* Featured large post */
+  .featured-post {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    padding-bottom: 64px; margin-bottom: 64px;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none; color: inherit;
+    transition: opacity 0.2s;
+  }
+  .featured-post:hover { opacity: 0.85; }
+  .featured-post-img {
+    background: var(--light);
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .featured-post-img img{
+    position: center;
+  }
+  .featured-post-body { display: flex; flex-direction: column; justify-content: center; }
+  .featured-label { font-size: 0.675rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; background: var(--accent-light); padding: 4px 12px; display: inline-block; margin-bottom: 20px; width: fit-content; }
+  .featured-post h2 { font-family: var(--serif); font-size: clamp(1.75rem, 2.5vw, 2.25rem); font-weight: 300; line-height: 1.2; color: var(--ink); margin-bottom: 16px; }
+  .featured-post p { font-size: 1rem; color: var(--ink-60); line-height: 1.75; margin-bottom: 28px; }
+  .featured-meta { font-size: 0.75rem; color: var(--ink-30); }
+  .read-more { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: gap 0.2s; }
+  .read-more::after { content: '→'; }
+  .read-more:hover { gap: 14px; }
+
+  /* Article list items */
+  .article-list { display: flex; flex-direction: column; gap: 0; }
+  .article-item {
+    display: grid; grid-template-columns: 200px 1fr 140px;
+    gap: 40px; padding: 36px 0;
+    border-top: 1px solid var(--rule);
+    text-decoration: none; color: inherit;
+    transition: background 0.2s;
+    align-items: center;
+  }
+  .article-item:last-child { border-bottom: 1px solid var(--rule); }
+  .article-item:hover .article-title { color: var(--accent); }
+  .article-date-col { font-size: 0.8125rem; color: var(--ink-30); }
+  .article-date-col .article-day { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--ink-30); line-height: 1; }
+  .article-date-col .article-mon-yr { font-size: 0.75rem; letter-spacing: 0.05em; color: var(--ink-30); }
+  .article-body { }
+  .article-tag { font-size: 0.675rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; background: var(--accent-light); padding: 2px 9px; display: inline-block; margin-bottom: 10px; }
+  .article-title { font-family: var(--serif); font-size: 1.375rem; font-weight: 400; color: var(--ink); line-height: 1.3; margin-bottom: 8px; transition: color 0.2s; }
+  .article-excerpt { font-size: 0.875rem; color: var(--ink-60); line-height: 1.7; }
+  .article-arrow { font-size: 1.25rem; color: var(--ink-30); text-align: right; transition: color 0.2s; }
+  .article-item:hover .article-arrow { color: var(--accent); }
+
+  /* PAGINATION */
+  .pagination { display: flex; justify-content: center; gap: 4px; margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--rule); }
+  .page-num { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 0.8125rem; color: var(--ink-60); cursor: pointer; border: 1px solid transparent; transition: all 0.2s; text-decoration: none; }
+  .page-num:hover { border-color: var(--rule); color: var(--ink); }
+  .page-num.active { background: var(--ink); color: var(--white); }
+
+  footer { background: var(--ink); color: var(--white); padding: 64px var(--pad); }
+  .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-logo { font-family: var(--serif); font-size: 1.25rem; color: var(--white); }
+  .footer-links-row { display: flex; gap: 28px; }
+  .footer-links-row a { font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links-row a:hover { color: var(--white); }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); max-width: var(--max); margin-left: auto; margin-right: auto; }
+
+  @media (max-width: 860px) {
+    .page-header-inner { grid-template-columns: 1fr; }
+    .featured-post { grid-template-columns: 1fr; }
+    .article-item { grid-template-columns: 1fr; gap: 10px; }
+    .article-date-col { display: flex; align-items: baseline; gap: 8px; }
+    .article-date-col .article-day { font-size: 1.25rem; }
+    .article-arrow { display: none; }
+  }
+  @media (max-width: 600px) {
+    .filter-bar-inner { gap: 0; }
+    .filter-btn { padding: 16px 14px; font-size: 0.65rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="demo-minimal.html" class="nav-logo">Eleanor <span>Vance</span></a>
+    <div class="nav-links">
+      <a href="demo-minimal.html#about">About</a>
+      <a href="demo-minimal.html#services">Services</a>
+      <a href="demo-minimal-blog.html" class="active">Insights</a>
+      <a href="demo-minimal.html#contact">Contact</a>
+      <a href="demo-minimal.html#contact" class="nav-cta">Book Consultation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div>
+      <div class="page-eyebrow">Insights & Analysis</div>
+      <h1>From the<br><em>practice.</em></h1>
+    </div>
+    <div class="page-header-desc">
+      Practical perspectives on business law, real estate, and litigation — written for clients and professionals who want to understand the landscape before they need a lawyer.
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Corporate</button>
+    <button class="filter-btn">Litigation</button>
+    <button class="filter-btn">Real Estate</button>
+    <button class="filter-btn">Compliance</button>
+    <button class="filter-btn">M&A</button>
+  </div>
+</div>
+
+<div class="articles-section">
+  <div class="articles-inner">
+
+    <!-- FEATURED -->
+    <a href="demo-minimal-blog-post.html" class="featured-post">
+      <div class="featured-post-img">
+        <img src="img/demo-minimal-blog1.jpg" alt="blog image">
+      </div>
+      <div class="featured-post-body">
+        <span class="featured-label">Corporate · Featured</span>
+        <h2>What Every Founder Should Know Before Signing a Term Sheet</h2>
+        <p>A close reading of the clauses that matter most — liquidation preferences, anti-dilution provisions, board composition, and the ones investors are hoping you overlook.</p>
+        <div class="featured-meta" style="margin-bottom: 24px;">March 14, 2025 · 8 min read</div>
+        <span class="read-more">Read article</span>
+      </div>
+    </a>
+
+    <!-- LIST -->
+    <div class="article-list">
+      <a href="demo-minimal-blog-post.html" class="article-item">
+        <div class="article-date-col">
+          <div class="article-day">28</div>
+          <div class="article-mon-yr">Feb 2025</div>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Litigation</span>
+          <div class="article-title">The Anatomy of a Commercial Dispute: A Step-by-Step Overview</div>
+          <div class="article-excerpt">From demand letter to verdict — understanding the litigation process helps clients make better decisions at every stage.</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </a>
+      <a href="demo-minimal-blog-post.html" class="article-item">
+        <div class="article-date-col">
+          <div class="article-day">19</div>
+          <div class="article-mon-yr">Jan 2025</div>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Real Estate</span>
+          <div class="article-title">Commercial Lease Red Flags: Five Clauses to Negotiate</div>
+          <div class="article-excerpt">Most tenants focus on rent and term length. Here are the less obvious provisions that create the most risk for your business.</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </a>
+      <a href="demo-minimal-blog-post.html" class="article-item">
+        <div class="article-date-col">
+          <div class="article-day">07</div>
+          <div class="article-mon-yr">Dec 2024</div>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">M&A</span>
+          <div class="article-title">Due Diligence for First-Time Buyers: A Practical Checklist</div>
+          <div class="article-excerpt">Acquiring a business involves much more than reviewing financials. A guide to the legal documents every buyer should request and understand.</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </a>
+      <a href="demo-minimal-blog-post.html" class="article-item">
+        <div class="article-date-col">
+          <div class="article-day">14</div>
+          <div class="article-mon-yr">Nov 2024</div>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Compliance</span>
+          <div class="article-title">California's Evolving Privacy Laws: What Businesses Must Do Now</div>
+          <div class="article-excerpt">CCPA amendments and new enforcement actions have raised the stakes. An updated overview of your obligations and how to meet them.</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </a>
+      <a href="demo-minimal-blog-post.html" class="article-item">
+        <div class="article-date-col">
+          <div class="article-day">02</div>
+          <div class="article-mon-yr">Oct 2024</div>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Corporate</span>
+          <div class="article-title">LLC vs. C-Corp: Choosing the Right Structure for Your Startup</div>
+          <div class="article-excerpt">Tax treatment, investor expectations, and exit flexibility all depend on your entity choice. Here is how to think through the decision.</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </a>
+      <a href="demo-minimal-blog-post.html" class="article-item">
+        <div class="article-date-col">
+          <div class="article-day">18</div>
+          <div class="article-mon-yr">Sep 2024</div>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Litigation</span>
+          <div class="article-title">When to Settle and When to Fight: A Framework for Business Disputes</div>
+          <div class="article-excerpt">The decision to litigate or settle is never purely legal. This framework helps clients weigh cost, risk, time, and business relationships together.</div>
+        </div>
+        <div class="article-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="pagination">
+      <a href="#" class="page-num active">1</a>
+      <a href="#" class="page-num">2</a>
+      <a href="#" class="page-num">3</a>
+      <span class="page-num" style="color:var(--ink-30);">…</span>
+      <a href="#" class="page-num">8</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Eleanor Vance</div>
+    <div class="footer-links-row">
+      <a href="demo-minimal.html#about">About</a>
+      <a href="demo-minimal.html#services">Services</a>
+      <a href="demo-minimal-blog.html">Insights</a>
+      <a href="demo-minimal.html#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Vance Legal Group. All rights reserved.</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

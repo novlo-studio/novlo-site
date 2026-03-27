@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Every Founder Should Know Before Signing a Term Sheet — Eleanor Vance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #ffffff; --off-white: #f9f8f6; --light: #f0ede8;
+    --ink: #111111; --ink-60: #666666; --ink-30: #bbbbbb;
+    --accent: #2c4a7c; --accent-light: #e8edf5; --rule: #e0ddd8;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --max: 1160px; --pad: clamp(24px, 5vw, 80px);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--white); color: var(--ink); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule); height: 68px;
+    display: flex; align-items: center;
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; width: 100%;
+    padding: 0 var(--pad); display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a { font-size: 0.8125rem; font-weight: 400; color: var(--ink-60); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-cta { background: var(--ink) !important; color: var(--white) !important; padding: 9px 22px; font-size: 0.75rem !important; letter-spacing: 0.08em !important; }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+  /* BREADCRUMB */
+  .breadcrumb-bar {
+    padding-top: 68px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--off-white);
+  }
+  .breadcrumb-inner {
+    max-width: var(--max); margin: 0 auto;
+    padding: 16px var(--pad);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.75rem; color: var(--ink-30);
+  }
+  .breadcrumb-inner a { color: var(--ink-30); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb-inner a:hover { color: var(--accent); }
+  .breadcrumb-sep { color: var(--ink-30); }
+
+  /* ARTICLE HEADER */
+  .article-header {
+    background: var(--off-white); padding: 64px var(--pad) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-header-inner { max-width: 760px; margin: 0 auto; }
+  .article-tag {
+    font-size: 0.675rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; background: var(--accent-light);
+    padding: 4px 12px; display: inline-block; margin-bottom: 24px;
+  }
+  .article-title {
+    font-family: var(--serif); font-size: clamp(2.25rem, 4vw, 3.25rem);
+    font-weight: 300; line-height: 1.15; color: var(--ink); margin-bottom: 24px;
+  }
+  .article-lead {
+    font-size: 1.125rem; color: var(--ink-60); line-height: 1.75; margin-bottom: 36px;
+  }
+  .article-meta-bar {
+    display: flex; align-items: center; gap: 28px;
+    padding: 24px 0; border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+  .article-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--light); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .author-name { font-size: 0.875rem; font-weight: 500; color: var(--ink); }
+  .author-title { font-size: 0.75rem; color: var(--ink-30); }
+  .meta-divider { width: 1px; height: 32px; background: var(--rule); }
+  .meta-item { font-size: 0.75rem; color: var(--ink-30); }
+  .meta-item strong { display: block; font-weight: 400; color: var(--ink-60); margin-bottom: 2px; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ARTICLE HERO IMAGE */
+  .article-hero-img {
+    max-width: var(--max); margin: 0 auto;
+    padding: 48px var(--pad);
+  }
+  .article-hero-img-frame {
+    width: 100%; aspect-ratio: 21/9;
+    background: var(--light); overflow: hidden;
+  }
+  .article-hero-img-frame img{
+    width: 100%; 
+  }
+
+  /* ARTICLE BODY */
+  .article-layout {
+    max-width: var(--max); margin: 0 auto;
+    padding: 0 var(--pad) 80px;
+    display: grid; grid-template-columns: 1fr 320px; gap: 80px;
+    align-items: start;
+  }
+
+  /* PROSE */
+  .prose { max-width: 700px; }
+  .prose p { font-size: 1.0625rem; color: var(--ink-60); line-height: 1.85; margin-bottom: 28px; }
+  .prose h2 { font-family: var(--serif); font-size: 1.875rem; font-weight: 400; color: var(--ink); line-height: 1.25; margin: 52px 0 20px; }
+  .prose h3 { font-family: var(--serif); font-size: 1.375rem; font-weight: 400; color: var(--ink); margin: 36px 0 14px; }
+  .prose ul, .prose ol { padding-left: 0; margin-bottom: 28px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .prose ul li, .prose ol li { font-size: 1.0625rem; color: var(--ink-60); line-height: 1.75; padding-left: 20px; position: relative; }
+  .prose ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-weight: 300; }
+  .prose ol { counter-reset: list-counter; }
+  .prose ol li { counter-increment: list-counter; }
+  .prose ol li::before { content: counter(list-counter) '.'; position: absolute; left: 0; color: var(--accent); font-size: 0.875rem; font-weight: 500; top: 2px; }
+  .prose blockquote {
+    border-left: 3px solid var(--accent); margin: 40px 0;
+    padding: 24px 32px; background: var(--off-white);
+  }
+  .prose blockquote p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; color: var(--ink); line-height: 1.6; margin: 0; }
+  .prose hr { border: none; border-top: 1px solid var(--rule); margin: 48px 0; }
+  .prose strong { color: var(--ink); font-weight: 500; }
+  .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .prose .callout {
+    background: var(--accent-light); border-left: 3px solid var(--accent);
+    padding: 20px 24px; margin: 32px 0;
+  }
+  .prose .callout p { font-size: 0.9375rem; color: var(--ink); margin: 0; line-height: 1.65; }
+  .prose .callout-label { font-size: 0.675rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 8px; }
+
+  /* SIDEBAR */
+  .sidebar { position: sticky; top: 100px; }
+  .sidebar-section { margin-bottom: 40px; }
+  .sidebar-title { font-size: 0.675rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 16px; font-weight: 500; }
+  .toc { display: flex; flex-direction: column; gap: 0; }
+  .toc-item {
+    padding: 10px 0; border-top: 1px solid var(--rule);
+    font-size: 0.8375rem; color: var(--ink-60); text-decoration: none;
+    transition: color 0.2s; line-height: 1.4;
+  }
+  .toc-item:last-child { border-bottom: 1px solid var(--rule); }
+  .toc-item:hover { color: var(--accent); }
+  .toc-item.active { color: var(--accent); font-weight: 500; }
+  .sidebar-cta {
+    background: var(--off-white); border: 1px solid var(--rule);
+    padding: 28px 24px;
+  }
+  .sidebar-cta-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+  .sidebar-cta-desc { font-size: 0.8375rem; color: var(--ink-60); line-height: 1.65; margin-bottom: 20px; }
+  .btn-sm {
+    background: var(--ink); color: var(--white);
+    padding: 10px 20px; font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    text-decoration: none; display: inline-block; transition: background 0.2s;
+  }
+  .btn-sm:hover { background: var(--accent); }
+
+  /* RELATED */
+  .related-section { border-top: 1px solid var(--rule); padding: 72px var(--pad); background: var(--off-white); }
+  .related-inner { max-width: var(--max); margin: 0 auto; }
+  .related-title { font-family: var(--serif); font-size: 1.75rem; font-weight: 300; color: var(--ink); margin-bottom: 40px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .related-card { text-decoration: none; color: inherit; display: block; padding: 28px; background: var(--white); border: 1px solid var(--rule); transition: box-shadow 0.25s; }
+  .related-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+  .related-tag { font-size: 0.675rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+  .related-card-title { font-family: var(--serif); font-size: 1.125rem; font-weight: 400; color: var(--ink); line-height: 1.35; margin-bottom: 8px; }
+  .related-date { font-size: 0.75rem; color: var(--ink-30); }
+
+  footer { background: var(--ink); color: var(--white); padding: 64px var(--pad); }
+  .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-logo { font-family: var(--serif); font-size: 1.25rem; color: var(--white); }
+  .footer-links-row { display: flex; gap: 28px; }
+  .footer-links-row a { font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links-row a:hover { color: var(--white); }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); max-width: var(--max); margin-left: auto; margin-right: auto; }
+
+  @media (max-width: 960px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .related-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .article-meta-bar { gap: 16px; }
+    .meta-divider { display: none; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="demo-minimal.html" class="nav-logo">Eleanor <span>Vance</span></a>
+    <div class="nav-links">
+      <a href="demo-minimal.html#about">About</a>
+      <a href="demo-minimal.html#services">Services</a>
+      <a href="demo-minimal-blog.html" class="active">Insights</a>
+      <a href="demo-minimal.html#contact">Contact</a>
+      <a href="demo-minimal.html#contact" class="nav-cta">Book Consultation</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="demo-minimal.html">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="demo-minimal-blog.html">Insights</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Term Sheet Fundamentals</span>
+  </div>
+</div>
+
+<div class="article-header">
+  <div class="article-header-inner">
+    <span class="article-tag">Corporate</span>
+    <h1 class="article-title">What Every Founder Should Know Before Signing a Term Sheet</h1>
+    <p class="article-lead">A close reading of the clauses that matter most — liquidation preferences, anti-dilution provisions, board composition, and the ones investors are hoping you overlook.</p>
+    <div class="article-meta-bar">
+      <div class="article-author">
+        <div class="author-avatar">
+          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+            <rect width="36" height="36" fill="#e4dfd8"/>
+            <circle cx="18" cy="14" r="7" fill="#c8c2b8"/>
+            <ellipse cx="18" cy="32" rx="12" ry="8" fill="#c8c2b8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="author-name">Eleanor Vance</div>
+          <div class="author-title">Attorney at Law</div>
+        </div>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <strong>Published</strong>
+        March 14, 2025
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <strong>Reading time</strong>
+        8 min
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <strong>Category</strong>
+        Corporate Law
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-hero-img">
+  <div class="article-hero-img-frame">
+    <img src="img/demo-minimal-blog1.jpg" alt="blog image">
+  </div>
+</div>
+
+<div class="article-layout">
+  <article class="prose">
+    <p>A term sheet is not a binding contract in most respects, but the decisions it memorializes will define the trajectory of your company for years. Founders who treat the term sheet as a formality — something to review quickly and sign before funding closes — often find themselves constrained in ways they did not anticipate when they eventually want to raise a subsequent round, sell the company, or bring on new leadership.</p>
+
+    <p>This article walks through the provisions that most commonly surprise or disadvantage founders, with an explanation of what each clause actually means and what you might reasonably negotiate.</p>
+
+    <h2 id="valuation">Valuation and Dilution</h2>
+
+    <p>Pre-money valuation is the figure most founders focus on — and it is important. But it is only half of the equation. The post-money valuation (pre-money plus the investment amount) determines what percentage of the company the investor receives. If a $5M investment goes in at a $20M pre-money valuation, the investor owns 20% post-money. That math seems straightforward, but founders frequently overlook how the option pool affects their position.</p>
+
+    <p>Many term sheets include a provision expanding the employee option pool <strong>before</strong> the funding closes. This expansion is dilutive to founders, not investors. If the term sheet calls for a 15% option pool and your current pool is 8%, that 7% increase is carved out of the pre-money valuation — reducing the founders' effective ownership before a single dollar is invested.</p>
+
+    <div class="callout">
+      <div class="callout-label">Practical Note</div>
+      <p>Always model the cap table — including the fully-diluted option pool — before signing. Ask your attorney to run the numbers at close and show you what each founder's percentage will be.</p>
+    </div>
+
+    <h2 id="liquidation">Liquidation Preferences</h2>
+
+    <p>This is, arguably, the clause with the greatest practical impact on founder outcomes in most exit scenarios. The liquidation preference determines who gets paid first — and how much — in a sale or liquidation event.</p>
+
+    <h3>1x Non-Participating</h3>
+    <p>The most founder-friendly structure. The investor receives either 1x their investment or their pro-rata share of proceeds (whichever is greater), but not both. In a large exit, investors will convert to common shares and participate alongside founders.</p>
+
+    <h3>Participating Preferred</h3>
+    <p>Investors receive their 1x liquidation preference off the top, then also participate in remaining proceeds pro-rata. This "double dip" can significantly reduce founder payouts in mid-range exits — a $40M sale on a $30M investment is a very different scenario under these two structures.</p>
+
+    <h3>Multiple Liquidation Preferences</h3>
+    <p>Rare in current markets but worth understanding. A 2x preference means investors get twice their investment before founders see anything. These provisions gained favor during certain market downturns and can reappear.</p>
+
+    <h2 id="antidilution">Anti-Dilution Provisions</h2>
+
+    <p>If your company raises a subsequent round at a lower valuation (a "down round"), anti-dilution provisions protect investors by adjusting their conversion price — effectively giving them more shares for the same money.</p>
+
+    <ul>
+      <li><strong>Broad-based weighted average</strong> — The most common and founder-friendly form. The adjustment considers all outstanding shares, including options and warrants, which moderates the impact.</li>
+      <li><strong>Narrow-based weighted average</strong> — Considers only the shares currently issued, producing a more aggressive adjustment for investors.</li>
+      <li><strong>Full ratchet</strong> — The most aggressive. The investor's conversion price resets to the lower round price, regardless of amount raised. This can be severely dilutive in a down round.</li>
+    </ul>
+
+    <blockquote>
+      <p>"The anti-dilution clause you agree to in your Series A will likely follow you through every subsequent round. Negotiate this one carefully — it affects not just you and this investor, but every future investor's model of the deal."</p>
+    </blockquote>
+
+    <h2 id="board">Board Composition and Control</h2>
+
+    <p>Term sheets typically specify board composition post-investment. A common structure for a Series A is a five-person board: two founder seats, one investor seat, and two independent directors (often mutually agreed upon). What matters is not just the seat count but who controls the nomination of independents — and what decisions require board approval versus investor approval.</p>
+
+    <p>Review the protective provisions carefully. These are the matters that require investor consent regardless of board vote: additional share issuance, acquisitions, debt above certain thresholds, dividend payments, changes to charter documents. The list of investor veto rights can be short and reasonable — or long and constraining depending on how aggressively you negotiate.</p>
+
+    <h2 id="information">Information Rights and Pro-Rata</h2>
+
+    <p>Investors will typically ask for annual audited financials, monthly or quarterly unaudited financials, and an annual budget. For most venture-backed companies this is reasonable and expected.</p>
+
+    <p>Pro-rata rights — the right to participate in future rounds to maintain their ownership percentage — are now nearly universal. Major investor pro-rata is standard. Be cautious about extending these rights to a large number of smaller investors, as it can complicate future fundraising logistics.</p>
+
+    <h2 id="conclusion">Before You Sign</h2>
+
+    <p>Term sheet negotiation is one of the highest-leverage moments in the life of a company. The time to address these provisions is before you have accepted a handshake or publicly announced a round — not after the legal documents are being papered and everyone is exhausted.</p>
+
+    <p>Work with legal counsel who has experience reviewing term sheets in your industry and can benchmark specific provisions against current market standards. What was standard in 2021 is not necessarily standard today, and terms vary considerably by investor, stage, and sector.</p>
+
+    <div class="callout">
+      <div class="callout-label">Need Help Reviewing a Term Sheet?</div>
+      <p>My practice includes detailed review and negotiation of venture financing documents. I can typically provide a first-pass analysis within 48 hours of receiving the term sheet.</p>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">In this article</div>
+      <ul class="toc">
+        <a href="#valuation" class="toc-item active">Valuation and Dilution</a>
+        <a href="#liquidation" class="toc-item">Liquidation Preferences</a>
+        <a href="#antidilution" class="toc-item">Anti-Dilution Provisions</a>
+        <a href="#board" class="toc-item">Board Composition</a>
+        <a href="#information" class="toc-item">Information Rights</a>
+        <a href="#conclusion" class="toc-item">Before You Sign</a>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-cta">
+        <div class="sidebar-cta-title">Need advice on your term sheet?</div>
+        <div class="sidebar-cta-desc">Schedule a focused consultation to review your specific documents and understand your position.</div>
+        <a href="demo-minimal.html#contact" class="btn-sm">Book Consultation</a>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Practice areas</div>
+      <ul class="toc">
+        <a href="demo-minimal.html#services" class="toc-item">Business Formation</a>
+        <a href="demo-minimal.html#services" class="toc-item">Contract Review</a>
+        <a href="demo-minimal.html#services" class="toc-item">M&A Advisory</a>
+        <a href="demo-minimal.html#services" class="toc-item">General Counsel</a>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<div class="related-section">
+  <div class="related-inner">
+    <div class="related-title">Related <em>articles</em></div>
+    <div class="related-grid">
+      <a href="blog-post.html" class="related-card">
+        <div class="related-tag">Corporate</div>
+        <div class="related-card-title">LLC vs. C-Corp: Choosing the Right Structure for Your Startup</div>
+        <div class="related-date">October 2, 2024</div>
+      </a>
+      <a href="blog-post.html" class="related-card">
+        <div class="related-tag">M&A</div>
+        <div class="related-card-title">Due Diligence for First-Time Buyers: A Practical Checklist</div>
+        <div class="related-date">December 7, 2024</div>
+      </a>
+      <a href="blog-post.html" class="related-card">
+        <div class="related-tag">Compliance</div>
+        <div class="related-card-title">California's Evolving Privacy Laws: What Businesses Must Do Now</div>
+        <div class="related-date">November 14, 2024</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Eleanor Vance</div>
+    <div class="footer-links-row">
+      <a href="demo-minimal.html#about">About</a>
+      <a href="demo-minimal.html#services">Services</a>
+      <a href="demo-minimal-blog.html">Insights</a>
+      <a href="demo-minimal.html#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Vance Legal Group. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
