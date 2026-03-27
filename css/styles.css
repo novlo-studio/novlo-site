@@ -150,7 +150,7 @@ a:hover {
 }
 
 /* Nav CTA - Active State (배경 반전) */
-.nav-menu a.nav-cta.active {
+.nav a.nav-cta.active {
     background: transparent;
     color: var(--accent) !important;
     box-shadow: inset 0 0 0 2px var(--accent);
@@ -186,12 +186,12 @@ body.nav-open {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-.nav-menu a.active {
+.nav a.active {
     color: var(--accent) !important;
     font-weight: 600;
 }
 
-.nav-menu a.active::after {
+.nav a.active::after {
     content: '';
     position: absolute;
     bottom: -4px;

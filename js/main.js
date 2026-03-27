@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Navigation
 function initNavigation() {
-    const navToggle = document.getElementById('navToggle');
+    const navToggle = document.getElementById('navHamburger');
     const navMenu = document.getElementById('navMenu');
 
     if (navToggle && navMenu) {
@@ -655,11 +655,13 @@ function setProtectedEmails() {
 ========================================== */
 
 function initHeroThree() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
     const IS_MOBILE = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || innerWidth < 768;
     const DPR       = Math.min(devicePixelRatio, IS_MOBILE ? 1.5 : 2);
 
     // ── Renderer ─────────────────────────────────────────────
-    const canvas   = document.getElementById('hero-canvas');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: !IS_MOBILE, alpha: true });
     renderer.setPixelRatio(DPR);
     renderer.setSize(innerWidth, innerHeight);
