@@ -4465,11 +4465,6 @@ blockquote {
         position: relative;
         z-index: 1001;
     }
-    .nav-toggle {
-        display: flex;
-        position: relative;
-        z-index: 1001;
-    }
 }
 @media (max-width: 768px) {
     

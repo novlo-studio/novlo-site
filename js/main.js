@@ -72,9 +72,6 @@ function initNavigation() {
 }
 // Highlight current page in nav
 function highlightCurrentPage() {
-  console.log('highlightCurrentPage called');
-    console.log('nav links found:', document.querySelectorAll('[data-nav]').length);
-
     const path = window.location.pathname;
     const currentPage = path === '/' ? 'home' : path.replace('/', '').replace('.html', '');
     
@@ -331,12 +328,6 @@ function initStylesPage() {
     initStyleCardEffects();
     initDetailAnimations();
 }
-
-// Run when DOM is ready
-if (document.querySelector('.style-gallery')) {
-    initStylesPage();
-}
-
 
 // Share functions
 function shareTwitter() {
