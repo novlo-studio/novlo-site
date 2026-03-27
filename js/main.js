@@ -33,20 +33,19 @@ function initIncludedScripts() {
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Load includes first
-    includeHTML().then(() => {
-        // Initialize other features after includes are loaded
-        initNavigation();
-        highlightCurrentPage();
-        initProcessAccordion();
-        initScrollEffects();
-        initFormHandling();
-        // initHeroTilt();
-        initLightbox();
-        initContactForm()
-        setProtectedEmails();
-        initHeroThree();
-    }, 100);
+    initNavigation();
+    highlightCurrentPage();
+    initProcessAccordion();
+    initScrollEffects();
+    initFormHandling();
+    initLightbox();
+    initContactForm();
+    setProtectedEmails();
+    initHeroThree();
+
+    if (document.querySelector('.style-gallery')) {
+        initStylesPage();
+    }
     
 });
 
@@ -110,6 +109,7 @@ function highlightCurrentPage() {
 // Scroll Effects
 function initScrollEffects() {
     const nav = document.getElementById('nav');
+    if (!nav) return;
     
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
@@ -221,18 +221,21 @@ function initFormHandling() {
 }
 
 // contact.html form submit handler
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    // 폼 데이터 저장
-    const formData = {
-        name: document.getElementById('name').value,
-        projectType: document.getElementById('project-type').value,
-        style: document.getElementById('style')?.value || '',
-        budget: document.getElementById('budget').value,
-        timeline: document.getElementById('timeline').value,
-        message: document.getElementById('message').value
-    };
-    sessionStorage.setItem('novloFormData', JSON.stringify(formData));
-});
+const contactFormEl = document.getElementById('contactForm');
+
+if (contactFormEl) {
+    contactFormEl.addEventListener('submit', function(e) {
+        const formData = {
+            name: document.getElementById('name')?.value || '',
+            projectType: document.getElementById('project-type')?.value || '',
+            style: document.getElementById('style')?.value || '',
+            budget: document.getElementById('budget')?.value || '',
+            timeline: document.getElementById('timeline')?.value || '',
+            message: document.getElementById('message')?.value || ''
+        };
+        sessionStorage.setItem('novloFormData', JSON.stringify(formData));
+    });
+}
 
 // Gallery hover effects
 document.querySelectorAll('.gallery-item').forEach(item => {
