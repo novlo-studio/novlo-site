@@ -5520,3 +5520,165 @@ blockquote {
     transform: translateY(0);
   }
 }
+/* =================================================================
+   SERVICES PAGE — 3-COLUMN PRICING GRID + PLAN EXTRAS
+   ================================================================= */
+
+.seo-pricing-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+}
+
+/* Heading and body text inside seo-plan (services page) */
+.seo-plan h3 {
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 0.65rem;
+}
+
+.seo-plan > p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+/* Limited / orange badge variant for seo-plan */
+.seo-plan-badge.limited {
+  color: #ff8e53;
+  border-color: rgba(255, 142, 83, 0.35);
+  background: rgba(255, 142, 83, 0.08);
+  animation: pulse-badge 2.2s ease-in-out infinite;
+}
+
+/* Original (struck-through) price inside seo-plan */
+.seo-plan-price-original {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+@media (max-width: 900px) {
+  .seo-pricing-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .seo-pricing-grid-3 .seo-plan::before {
+    display: none;
+  }
+  .seo-pricing-grid-3 .seo-plan + .seo-plan {
+    border-top: none;
+  }
+  .seo-pricing-grid-3 .seo-plan-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* =================================================================
+   AI VISUALS PAGE — COST COMPARISON COLUMNS
+   ================================================================= */
+
+.ai-compare-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+}
+
+.ai-compare-col {
+  position: relative;
+  padding: 2.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-compare-col::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--border);
+}
+
+.ai-compare-col.featured::before {
+  background: var(--accent);
+  box-shadow: 0 0 16px rgba(90, 140, 255, 0.35);
+}
+
+.ai-compare-col .col-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.ai-compare-col .col-price {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.ai-compare-col .col-price.dimmed {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+.ai-compare-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ai-compare-col ul li {
+  padding: 0.6rem 0 0.6rem 1.4rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  position: relative;
+}
+
+.ai-compare-col ul li:last-child {
+  border-bottom: none;
+}
+
+.ai-compare-col ul li::before {
+  content: "×";
+  position: absolute;
+  left: 0;
+  color: rgba(255, 100, 100, 0.6);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ai-compare-col.featured ul li::before {
+  content: "✓";
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .ai-compare-cols {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .ai-compare-col + .ai-compare-col {
+    border-top: none;
+  }
+}
+

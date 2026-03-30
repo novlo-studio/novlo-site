@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Navigation
 function initNavigation() {
-    const navToggle = document.getElementById('navHamburger');
+    const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (navToggle && navMenu) {
